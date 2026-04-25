@@ -1,0 +1,444 @@
+{
+  "type": "container",
+  "style": {
+    "display": "flex",
+    "flexDirection": "column",
+    "height": "100vh",
+    "backgroundColor": "#0f172a"
+  },
+  "children": [
+    {
+      "type": "container",
+      "style": {
+        "flex": "1",
+        "overflowY": "auto",
+        "padding": "20px",
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "20px"
+      },
+      "children": [
+        {
+          "type": "container",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "16px"
+          },
+          "children": [
+            {
+              "type": "button",
+              "props": {
+                "icon": "arrow-left",
+                "iconSize": 20,
+                "iconColor": "#f1f5f9",
+                "action": {
+                  "type": "goBack"
+                }
+              },
+              "style": {
+                "width": "40px",
+                "height": "40px",
+                "borderRadius": "50%",
+                "backgroundColor": "#111827",
+                "border": "1px solid #1e293b",
+                "display": "flex",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "cursor": "pointer",
+                "padding": "0"
+              }
+            },
+            {
+              "type": "text",
+              "props": {
+                "value": "Your Portfolio",
+                "variant": "h3"
+              },
+              "style": {
+                "color": "#f1f5f9"
+              }
+            }
+          ]
+        },
+        {
+          "type": "tab-bar",
+          "props": {
+            "stateKey": "activeTab",
+            "defaultValue": "shares",
+            "tabs": [
+              {
+                "key": "shares",
+                "label": "Shares (12)"
+              },
+              {
+                "key": "mf",
+                "label": "Mutual Funds (8)"
+              }
+            ],
+            "activeStyle": {
+              "padding": "12px",
+              "borderRadius": "12px",
+              "backgroundColor": "#3b82f6",
+              "border": "1px solid #3b82f6",
+              "textAlign": "center"
+            },
+            "inactiveStyle": {
+              "padding": "12px",
+              "borderRadius": "12px",
+              "backgroundColor": "transparent",
+              "border": "1px solid #1e293b",
+              "textAlign": "center"
+            },
+            "activeTextStyle": {
+              "color": "#ffffff",
+              "fontSize": "12px",
+              "fontWeight": "600"
+            },
+            "inactiveTextStyle": {
+              "color": "#94a3b8",
+              "fontSize": "12px",
+              "fontWeight": "600"
+            }
+          }
+        },
+        {
+          "type": "container",
+          "style": {
+            "borderRadius": "16px",
+            "border": "1px solid #1e293b",
+            "backgroundColor": "#111827",
+            "padding": "20px",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8px"
+          },
+          "children": [
+            {
+              "type": "container",
+              "style": {
+                "display": "flex",
+                "justifyContent": "space-between",
+                "alignItems": "center"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "Total Portfolio Value",
+                    "variant": "caption"
+                  },
+                  "style": {
+                    "color": "#94a3b8"
+                  }
+                },
+                {
+                  "type": "container",
+                  "style": {
+                    "backgroundColor": "rgba(59,130,246,0.15)",
+                    "padding": "4px 10px",
+                    "borderRadius": "8px"
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "props": {
+                        "value": "Zerodha",
+                        "variant": "badge"
+                      },
+                      "style": {
+                        "color": "#3b82f6"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "props": {
+                "value": "₹14,82,340",
+                "variant": "h2Large"
+              },
+              "style": {
+                "color": "#f1f5f9"
+              }
+            },
+            {
+              "type": "text",
+              "props": {
+                "value": "As of 09 Apr 2026 · 4:00 PM IST",
+                "variant": "caption"
+              },
+              "style": {
+                "color": "#94a3b8"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "props": {
+            "value": "HOLDINGS",
+            "variant": "sectionHeader"
+          },
+          "style": {
+            "color": "#94a3b8"
+          }
+        },
+        {
+          "type": "value-switch",
+          "props": {
+            "stateKey": "activeTab",
+            "cases": {
+              "shares": {
+                "type": "expandable-list",
+                "props": {
+                  "itemType": "holding-card",
+                  "initialCount": 2,
+                  "moreLabel": "more holdings",
+                  "lessLabel": "Show less",
+                  "items": [
+                    {
+                      "code": "RIL",
+                      "codeBg": "#312e81",
+                      "codeColor": "#818cf8",
+                      "name": "Reliance Industries",
+                      "subtitle": "INE002A01018 · 45 sh",
+                      "value": "₹1,14,750",
+                      "change": "+2.4%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "INF",
+                      "codeBg": "#7f1d1d",
+                      "codeColor": "#fca5a5",
+                      "name": "Infosys Ltd",
+                      "subtitle": "INE009A01021 · 80 sh",
+                      "value": "₹1,56,800",
+                      "change": "-0.8%",
+                      "changeColor": "#ef4444"
+                    },
+                    {
+                      "code": "TCS",
+                      "codeBg": "#1e3a5f",
+                      "codeColor": "#7dd3fc",
+                      "name": "Tata Consultancy",
+                      "subtitle": "INE467B01029 · 30 sh",
+                      "value": "₹1,08,000",
+                      "change": "+1.2%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "HDB",
+                      "codeBg": "#164e63",
+                      "codeColor": "#67e8f9",
+                      "name": "HDFC Bank",
+                      "subtitle": "INE040A01034 · 50 sh",
+                      "value": "₹82,500",
+                      "change": "+0.9%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "ITC",
+                      "codeBg": "#365314",
+                      "codeColor": "#bef264",
+                      "name": "ITC Limited",
+                      "subtitle": "INE154A01025 · 200 sh",
+                      "value": "₹90,000",
+                      "change": "+0.3%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "SBI",
+                      "codeBg": "#3b0764",
+                      "codeColor": "#d8b4fe",
+                      "name": "State Bank of India",
+                      "subtitle": "INE062A01020 · 60 sh",
+                      "value": "₹48,000",
+                      "change": "-1.1%",
+                      "changeColor": "#ef4444"
+                    },
+                    {
+                      "code": "BAJ",
+                      "codeBg": "#78350f",
+                      "codeColor": "#fbbf24",
+                      "name": "Bajaj Finance",
+                      "subtitle": "INE296A01024 · 10 sh",
+                      "value": "₹72,000",
+                      "change": "+3.5%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "KOT",
+                      "codeBg": "#7f1d1d",
+                      "codeColor": "#fca5a5",
+                      "name": "Kotak Mahindra",
+                      "subtitle": "INE237A01028 · 25 sh",
+                      "value": "₹45,000",
+                      "change": "+0.6%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "LT",
+                      "codeBg": "#1e3a5f",
+                      "codeColor": "#7dd3fc",
+                      "name": "Larsen & Toubro",
+                      "subtitle": "INE018A01030 · 15 sh",
+                      "value": "₹52,500",
+                      "change": "-0.4%",
+                      "changeColor": "#ef4444"
+                    },
+                    {
+                      "code": "ASN",
+                      "codeBg": "#312e81",
+                      "codeColor": "#818cf8",
+                      "name": "Asian Paints",
+                      "subtitle": "INE021A01026 · 20 sh",
+                      "value": "₹56,000",
+                      "change": "+1.8%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "MRF",
+                      "codeBg": "#78350f",
+                      "codeColor": "#fbbf24",
+                      "name": "MRF Ltd",
+                      "subtitle": "INE883A01011 · 1 sh",
+                      "value": "₹1,25,000",
+                      "change": "+0.2%",
+                      "changeColor": "#22c55e"
+                    }
+                  ]
+                }
+              },
+              "mf": {
+                "type": "expandable-list",
+                "props": {
+                  "itemType": "holding-card",
+                  "initialCount": 2,
+                  "moreLabel": "more funds",
+                  "lessLabel": "Show less",
+                  "items": [
+                    {
+                      "code": "AXS",
+                      "codeBg": "#164e63",
+                      "codeColor": "#67e8f9",
+                      "name": "Axis Bluechip Fund",
+                      "subtitle": "500 units · Growth",
+                      "value": "₹85,000",
+                      "change": "+3.1%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "SBI",
+                      "codeBg": "#3b0764",
+                      "codeColor": "#d8b4fe",
+                      "name": "SBI Small Cap Fund",
+                      "subtitle": "300 units · Growth",
+                      "value": "₹42,000",
+                      "change": "+1.5%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "HDC",
+                      "codeBg": "#1e3a5f",
+                      "codeColor": "#7dd3fc",
+                      "name": "HDFC Mid-Cap Opp.",
+                      "subtitle": "200 units · Growth",
+                      "value": "₹38,000",
+                      "change": "+2.2%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "MIR",
+                      "codeBg": "#7f1d1d",
+                      "codeColor": "#fca5a5",
+                      "name": "Mirae Asset Large Cap",
+                      "subtitle": "150 units · Growth",
+                      "value": "₹28,500",
+                      "change": "-0.5%",
+                      "changeColor": "#ef4444"
+                    },
+                    {
+                      "code": "PPF",
+                      "codeBg": "#365314",
+                      "codeColor": "#bef264",
+                      "name": "Parag Parikh Flexi Cap",
+                      "subtitle": "400 units · Growth",
+                      "value": "₹62,000",
+                      "change": "+4.1%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "NIP",
+                      "codeBg": "#78350f",
+                      "codeColor": "#fbbf24",
+                      "name": "Nippon India Growth",
+                      "subtitle": "250 units · Growth",
+                      "value": "₹31,200",
+                      "change": "+0.8%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "KOT",
+                      "codeBg": "#312e81",
+                      "codeColor": "#818cf8",
+                      "name": "Kotak Emerging Equity",
+                      "subtitle": "180 units · Growth",
+                      "value": "₹24,800",
+                      "change": "+1.9%",
+                      "changeColor": "#22c55e"
+                    },
+                    {
+                      "code": "ICR",
+                      "codeBg": "#164e63",
+                      "codeColor": "#67e8f9",
+                      "name": "ICICI Pru Balanced",
+                      "subtitle": "350 units · Growth",
+                      "value": "₹45,500",
+                      "change": "+2.7%",
+                      "changeColor": "#22c55e"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "container",
+      "style": {
+        "padding": "16px 20px 24px",
+        "backgroundColor": "#0f172a"
+      },
+      "children": [
+        {
+          "type": "button",
+          "props": {
+            "label": "See Eligible for Loan →",
+            "action": {
+              "type": "navigate",
+              "payload": {
+                "route": "/eligible-pledge"
+              }
+            }
+          },
+          "style": {
+            "width": "100%",
+            "padding": "16px",
+            "borderRadius": "16px",
+            "border": "none",
+            "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+            "color": "#ffffff",
+            "fontSize": "16px",
+            "fontWeight": "600",
+            "cursor": "pointer"
+          }
+        }
+      ]
+    }
+  ]
+}

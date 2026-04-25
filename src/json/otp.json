@@ -1,0 +1,261 @@
+{
+  "type": "container",
+  "style": {
+    "display": "flex",
+    "flexDirection": "column",
+    "alignItems": "center",
+    "padding": "20px",
+    "gap": "24px"
+  },
+  "children": [
+    {
+      "type": "button",
+      "props": {
+        "icon": "arrow-left",
+        "iconSize": 20,
+        "iconColor": "#f1f5f9",
+        "action": {
+          "type": "goBack"
+        }
+      },
+      "style": {
+        "width": "40px",
+        "height": "40px",
+        "borderRadius": "50%",
+        "backgroundColor": "#111827",
+        "border": "1px solid #1e293b",
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "cursor": "pointer",
+        "padding": "0",
+        "alignSelf": "flex-start"
+      }
+    },
+    {
+      "type": "container",
+      "style": {
+        "width": "100%",
+        "height": "4px",
+        "borderRadius": "4px",
+        "backgroundColor": "#1e293b"
+      },
+      "children": [
+        {
+          "type": "container",
+          "style": {
+            "height": "4px",
+            "width": "50%",
+            "borderRadius": "4px",
+            "backgroundColor": "#3b82f6"
+          }
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "props": {
+        "value": "📱",
+        "variant": "icon"
+      },
+      "style": {
+        "marginTop": "16px"
+      }
+    },
+    {
+      "type": "text",
+      "props": {
+        "value": "Enter OTP",
+        "variant": "h2"
+      },
+      "style": {
+        "color": "#f1f5f9"
+      }
+    },
+    {
+      "type": "text",
+      "props": {
+        "value": "Sent to +91 98765 43210",
+        "variant": "body"
+      },
+      "style": {
+        "color": "#94a3b8"
+      }
+    },
+    {
+      "type": "otp-input",
+      "props": {
+        "length": 6,
+        "boxStyle": {
+          "width": "48px",
+          "height": "56px",
+          "textAlign": "center",
+          "fontSize": "20px",
+          "fontWeight": "600",
+          "borderRadius": "12px",
+          "border": "1px solid #1e293b",
+          "backgroundColor": "#0f172a",
+          "color": "#f1f5f9",
+          "outline": "none"
+        }
+      }
+    },
+    {
+      "type": "text",
+      "props": {
+        "value": "Resend in 00:28",
+        "variant": "body"
+      },
+      "style": {
+        "color": "#94a3b8"
+      }
+    },
+    {
+      "type": "button",
+      "props": {
+        "label": "Verify & Continue",
+        "action": {
+          "type": "navigate",
+          "payload": {
+            "route": "/pledge"
+          }
+        }
+      },
+      "style": {
+        "width": "100%",
+        "maxWidth": "380px",
+        "padding": "16px",
+        "borderRadius": "16px",
+        "border": "none",
+        "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+        "color": "#ffffff",
+        "fontSize": "16px",
+        "fontWeight": "600",
+        "cursor": "pointer"
+      }
+    },
+    {
+      "type": "container",
+      "style": {
+        "width": "100%",
+        "maxWidth": "380px",
+        "borderRadius": "16px",
+        "border": "1px solid #1e293b",
+        "backgroundColor": "#111827",
+        "padding": "20px",
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "12px"
+      },
+      "children": [
+        {
+          "type": "text",
+          "props": {
+            "value": "Verification pipeline",
+            "variant": "caption"
+          },
+          "style": {
+            "color": "#94a3b8"
+          }
+        },
+        {
+          "type": "container",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "12px"
+          },
+          "children": [
+            {
+              "type": "container",
+              "style": {
+                "width": "24px",
+                "height": "24px",
+                "borderRadius": "50%",
+                "backgroundColor": "rgba(34,197,94,0.2)",
+                "display": "flex",
+                "alignItems": "center",
+                "justifyContent": "center"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "✓",
+                    "variant": "caption"
+                  },
+                  "style": {
+                    "color": "#22c55e"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "props": {
+                "value": "PAN verified via NSDL",
+                "variant": "bodyMedium"
+              },
+              "style": {
+                "color": "#f1f5f9"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "style": {
+            "width": "1px",
+            "height": "16px",
+            "backgroundColor": "#1e293b",
+            "marginLeft": "12px"
+          }
+        },
+        {
+          "type": "container",
+          "style": {
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "12px"
+          },
+          "children": [
+            {
+              "type": "container",
+              "style": {
+                "width": "24px",
+                "height": "24px",
+                "borderRadius": "50%",
+                "backgroundColor": "rgba(59,130,246,0.2)",
+                "display": "flex",
+                "alignItems": "center",
+                "justifyContent": "center"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "–",
+                    "variant": "caption"
+                  },
+                  "style": {
+                    "color": "#3b82f6"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "props": {
+                "value": "Mobile OTP pending",
+                "variant": "bodyMedium"
+              },
+              "style": {
+                "color": "#f1f5f9"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
