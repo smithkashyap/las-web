@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useState, type ReactNode } from
 export interface UIState {
   selections: Record<string, string[]>;
   values: Record<string, boolean | string>;
+  errors: Record<string, string>;
 }
 
 interface UIStateCtx {
@@ -14,13 +15,30 @@ interface UIStateCtx {
   setSelections: (key: string, values: string[]) => void;
   getBoolean: (key: string) => boolean;
   getString: (key: string) => string;
+  setError: (key: string, message: string) => void;
+  hasErrors: () => boolean;
 }
 
 const Ctx = createContext<UIStateCtx | null>(null);
 
 export function UIStateProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<UIState>({ selections: {}, values: {} });
+  const [state, setState] = useState<UIState>({ selections: {}, values: {}, errors: {} });
 
+
+  const setError = useCallback((key: string, message: string) => {
+    setState((p) => ({
+      ...p,
+      errors: {
+        ...p.errors,
+        [key]: message,
+      },
+    }));
+  }, []);
+
+  const hasErrors = useCallback(() => {
+    return Object.values(state.errors).some((e) => e !== '');
+  }, [state.errors]);
+  
   const toggleSelection = useCallback((key: string, val: string) => {
     setState((p) => {
       const cur = p.selections[key] ?? [];
@@ -53,7 +71,7 @@ export function UIStateProvider({ children }: { children: ReactNode }) {
   }, [state.values]);
 
   return (
-    <Ctx.Provider value={{ state, toggleSelection, getSelections, isSelected, setValue: setValueFn, setSelections, getBoolean, getString }}>
+    <Ctx.Provider value={{ state, toggleSelection, getSelections, isSelected, setValue: setValueFn, setSelections, getBoolean, getString, setError, hasErrors }}>
       {children}
     </Ctx.Provider>
   );

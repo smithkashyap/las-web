@@ -13,7 +13,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function Button({ node }: { node: UINode }) {
   const navigate = useNavigate();
-  const { getBoolean, setValue } = useUIState();
+  const { state, getBoolean, setValue, hasErrors } = useUIState();
   const props = (node.props ?? {}) as {
     label?: string;
     icon?: string;
@@ -22,10 +22,18 @@ export function Button({ node }: { node: UINode }) {
     action?: Action;
     disabled?: boolean;
     disabledWhenFalse?: string;
+    disableWhenInvalid?: boolean;
   };
+  const requiredFields = ['fullName', 'pan', 'dob', 'mobile', 'email'];
+  const hasEmptyRequiredFields = requiredFields.some((field) => {
+    const value = state.values[field];
+    return typeof value !== 'string' || value.trim() === '';
+  });
 
   let isDisabled = Boolean(props.disabled);
   if (!isDisabled && props.disabledWhenFalse) isDisabled = !getBoolean(props.disabledWhenFalse);
+
+  if (!isDisabled && props.disableWhenInvalid) isDisabled = hasErrors() || hasEmptyRequiredFields;
 
   const Icon = props.icon ? iconMap[props.icon] : null;
 

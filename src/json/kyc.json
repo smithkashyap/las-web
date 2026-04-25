@@ -89,7 +89,9 @@
             {
               "type": "input",
               "props": {
-                "placeholder": "Rahul Sharma"
+                "placeholder": "Rahul Sharma",
+                "stateKey": "fullName",
+                "validation": "required"
               },
               "style": {
                 "width": "100%",
@@ -127,7 +129,9 @@
               "type": "input",
               "props": {
                 "placeholder": "ABCPS1234K",
-                "maxLength": 10
+                "maxLength": 10,
+                "stateKey": "pan",
+                "validation": "pan"
               },
               "style": {
                 "width": "100%",
@@ -177,6 +181,8 @@
               "type": "date-input",
               "props": {
                 "placeholder": "DD / MM / YYYY",
+                "stateKey": "dob",
+                "validation": "required",
                 "inputStyle": {
                   "width": "100%",
                   "padding": "14px 16px",
@@ -245,7 +251,9 @@
                   "props": {
                     "placeholder": "98765 43210",
                     "inputType": "tel",
-                    "format": "phone"
+                    "format": "phone",
+                    "stateKey": "mobile",
+                    "validation": "required"
                   },
                   "style": {
                     "flex": "1",
@@ -285,7 +293,9 @@
               "type": "input",
               "props": {
                 "placeholder": "rahul.sharma@gmail.com",
-                "inputType": "email"
+                "inputType": "email",
+                "stateKey": "email",
+                "validation": "email"
               },
               "style": {
                 "width": "100%",
@@ -319,6 +329,7 @@
       "props": {
         "label": "Send OTP to Verify",
         "disabledWhenFalse": "tncAccepted",
+        "disableWhenInvalid": true,
         "action": {
           "type": "navigate",
           "payload": {

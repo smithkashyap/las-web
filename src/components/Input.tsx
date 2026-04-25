@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
 
 function formatPhone(raw: string): string {
@@ -8,36 +9,97 @@ function formatPhone(raw: string): string {
 }
 
 export function Input({ node }: { node: UINode }) {
-  const [value, setValue] = useState('');
+  const { setValue, setError } = useUIState();
+  const [touched, setTouched] = useState(false);
+  const [value, setLocalValue] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
   const props = (node.props ?? {}) as {
     placeholder?: string;
     inputType?: string;
     maxLength?: number;
     format?: string;
+    stateKey?: string;
+    validation?: 'required' | 'email' | 'pan';
   };
 
   const isPhone = props.format === 'phone';
 
+  const validate = (val: string): string => {
+    if (!props.validation) return '';
+
+    switch (props.validation) {
+      case 'required':
+        return val.trim() === '' ? 'This field is required' : '';
+
+      case 'email':
+        return !/^\S+@\S+\.\S+$/.test(val) ? 'Invalid email' : '';
+
+      case 'pan':
+        return !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(val) ? 'Invalid PAN' : '';
+
+      default:
+        return '';
+    }
+  };
+
+  useEffect(() => {
+    if (!props.stateKey) return;
+
+    const msg = validate(value);
+    setValue(props.stateKey, value);
+    setError(props.stateKey, msg);
+  }, [props.stateKey, setError, setValue, value]);
+
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      let val = e.target.value;
+
+      if (props.validation === 'pan') {
+        val = val.toUpperCase();
+      }
+
       if (isPhone) {
-        setValue(formatPhone(e.target.value));
-      } else {
-        setValue(e.target.value);
+        val = formatPhone(val);
+      }
+
+      setLocalValue(val);
+      if (touched) {
+        setErrorMsg(validate(val));
       }
     },
-    [isPhone],
+    [isPhone, props.validation, touched]
   );
 
+  const onBlur = useCallback(() => {
+    setTouched(true);
+    const msg = validate(value);
+    setErrorMsg(msg);
+  }, [value]);
+
+
   return (
-    <input
-      type={props.inputType ?? 'text'}
-      inputMode={isPhone ? 'numeric' : undefined}
-      placeholder={props.placeholder}
-      maxLength={isPhone ? 11 : props.maxLength}
-      style={{ fontFamily: "'Inter', sans-serif", ...node.style }}
-      value={value}
-      onChange={handleChange}
-    />
+    <div>
+      <input
+        type={props.inputType ?? 'text'}
+        inputMode={isPhone ? 'numeric' : undefined}
+        placeholder={props.placeholder}
+        maxLength={isPhone ? 11 : props.maxLength}
+        value={value}
+        onChange={handleChange}
+        onBlur={onBlur}
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          ...node.style,
+          border: errorMsg ? '1px solid red' : node.style?.border,
+        }}
+      />
+
+      {errorMsg && (
+        <div style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>
+          {errorMsg}
+        </div>
+      )}
+    </div>
   );
 }

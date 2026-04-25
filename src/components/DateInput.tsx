@@ -1,5 +1,6 @@
-import { useCallback, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Calendar } from 'lucide-react';
+import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
 
 function formatDate(raw: string): string {
@@ -15,6 +16,7 @@ function isoToFormatted(iso: string): string {
 }
 
 export function DateInput({ node }: { node: UINode }) {
+  const { setValue: setGlobalValue, setError } = useUIState();
   const [value, setValue] = useState('');
   const ref = useRef<HTMLInputElement>(null);
   const props = (node.props ?? {}) as {
@@ -22,11 +24,24 @@ export function DateInput({ node }: { node: UINode }) {
     maxLength?: number;
     inputStyle?: CSSProperties;
     iconButtonStyle?: CSSProperties;
+    stateKey?: string;
+    validation?: 'required';
+  };
+
+  const validate = (val: string): string => {
+    if (props.validation !== 'required') return '';
+    return val.trim() === '' ? 'This field is required' : '';
   };
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(formatDate(e.target.value));
   }, []);
+
+  useEffect(() => {
+    if (!props.stateKey) return;
+    setGlobalValue(props.stateKey, value);
+    setError(props.stateKey, validate(value));
+  }, [props.stateKey, setError, setGlobalValue, value]);
 
   return (
     <div style={{ position: 'relative', display: 'flex', alignItems: 'center', ...node.style }}>
@@ -46,7 +61,7 @@ export function DateInput({ node }: { node: UINode }) {
       >
         <Calendar size={18} color="#94a3b8" />
       </button>
-      <input ref={ref} type="date" onChange={(e) => e.target.value && setValue(isoToFormatted(e.target.value))} style={{ position: 'absolute', opacity: 0, width: 0, height: 0, pointerEvents: 'none' }} tabIndex={-1} />
+      <input ref={ref} type="date" onChange={(e) => setValue(e.target.value ? isoToFormatted(e.target.value) : '')} style={{ position: 'absolute', opacity: 0, width: 0, height: 0, pointerEvents: 'none' }} tabIndex={-1} />
     </div>
   );
 }
