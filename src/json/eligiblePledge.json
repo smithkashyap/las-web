@@ -264,7 +264,7 @@
         {
           "type": "button",
           "props": {
-            "disabledWhenEmpty": "pledgeAssets",
+            "disabled": "{{isCtaDisabled}}",
             "label": "Proceed to KYC →",
             "action": {
               "type": "navigate",

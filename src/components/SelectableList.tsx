@@ -1,36 +1,35 @@
-import { useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { SelectableItem, type SelectableItemData } from './SelectableItem';
-import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
 
-interface SelectableListProps {
+export interface SelectableListProps {
   items: SelectableItemData[];
-  defaultSelected?: string[];
-  selectionKey?: string;
   onSelectionChange?: (selected: SelectableItemData[]) => void;
+  style?: CSSProperties;
 }
 
-export function SelectableList({ node }: { node: UINode }) {
-  const { setSelections } = useUIState();
-  const props = (node.props ?? {}) as SelectableListProps;
-  const items = props.items ?? [];
-  const selectionKey = props.selectionKey;
+type SelectableListNodeProps = {
+  node?: UINode;
+} & Partial<SelectableListProps>;
 
-  const eligibleItems = items.filter((i) => !i.disabled);
-  const defaultSelected = props.defaultSelected ?? eligibleItems.map((i) => i.value);
+export function SelectableList({ node, items: itemsProp, onSelectionChange, style }: SelectableListNodeProps) {
+  const nodeProps = (node?.props ?? {}) as Partial<SelectableListProps>;
+  const items = itemsProp ?? nodeProps.items ?? [];
+  const resolvedStyle = style ?? node?.style;
+
+  const defaultSelected = useMemo(
+    () => items.filter((item) => !item.disabled).map((item) => item.value),
+    [items],
+  );
 
   const [selected, setSelected] = useState<Set<string>>(new Set(defaultSelected));
 
-  // Sync initial selection to uiState on mount
   useEffect(() => {
-    if (selectionKey) {
-      setSelections(selectionKey, defaultSelected);
-    }
-    // Fire initial onSelectionChange so totals are correct on mount
-    const initialItems = items.filter((i) => defaultSelected.includes(i.value));
-    props.onSelectionChange?.(initialItems);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const nextSelected = new Set(defaultSelected);
+    setSelected(nextSelected);
+    onSelectionChange?.(items.filter((item) => nextSelected.has(item.value)));
+  }, [defaultSelected, items, onSelectionChange]);
 
   const toggle = (item: SelectableItemData) => {
     if (item.disabled) return;
@@ -43,22 +42,15 @@ export function SelectableList({ node }: { node: UINode }) {
         next.add(item.value);
       }
 
-      const nextValues = Array.from(next);
       const selectedItems = items.filter((i) => next.has(i.value));
-
-      // Sync to uiState so Button.disabledWhenEmpty reacts
-      if (selectionKey) {
-        setSelections(selectionKey, nextValues);
-      }
-
-      props.onSelectionChange?.(selectedItems);
+      onSelectionChange?.(selectedItems);
 
       return next;
     });
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...node.style }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...resolvedStyle }}>
       {items.map((item) => (
         <SelectableItem
           key={item.value}

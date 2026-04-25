@@ -1,23 +1,36 @@
 import { componentRegistry } from './componentRegistry';
 import type { UINode } from './types';
 
-export type Scope = Record<string, string>;
+export type Scope = Record<string, string | number | boolean>;
 
-function interpolate(value: string, scope: Scope): string {
-  return value.replace(/\{\{(\w+)\}\}/g, (_, key) => scope[key] ?? `{{${key}}}`);
+function resolveString(value: string, scope: Scope) {
+  const exactMatch = value.match(/^\{\{(\w+)\}\}$/);
+  const exactKey = exactMatch?.[1];
+  if (exactKey) {
+    const scopedValue = scope[exactKey];
+    return scopedValue ?? value;
+  }
+
+  return value.replace(/\{\{(\w+)\}\}/g, (_, key) => String(scope[key] ?? `{{${key}}}`));
+}
+
+function resolveScopeValue(value: unknown, scope: Scope): unknown {
+  if (typeof value === 'string') return resolveString(value, scope);
+  if (Array.isArray(value)) return value.map((item) => resolveScopeValue(item, scope));
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, nestedValue]) => [key, resolveScopeValue(nestedValue, scope)]),
+    );
+  }
+  return value;
 }
 
 function applyScope(node: UINode, scope: Scope): UINode {
   if (!Object.keys(scope).length) return node;
-
   const patched = { ...node };
 
   if (patched.props) {
-    const newProps = { ...patched.props } as Record<string, unknown>;
-    if (typeof newProps['value'] === 'string') {
-      newProps['value'] = interpolate(newProps['value'], scope);
-    }
-    patched.props = newProps as typeof patched.props;
+    patched.props = resolveScopeValue(patched.props, scope) as typeof patched.props;
   }
 
   if (patched.children) {

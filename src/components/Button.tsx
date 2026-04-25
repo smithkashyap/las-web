@@ -13,26 +13,25 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function Button({ node }: { node: UINode }) {
   const navigate = useNavigate();
-  const { getSelections, getBoolean, setValue } = useUIState();
+  const { getBoolean, setValue } = useUIState();
   const props = (node.props ?? {}) as {
     label?: string;
     icon?: string;
     iconSize?: number;
     iconColor?: string;
     action?: Action;
-    disabledWhenEmpty?: string;
+    disabled?: boolean;
     disabledWhenFalse?: string;
   };
 
-  let isDisabled = false;
-  if (props.disabledWhenEmpty) isDisabled = getSelections(props.disabledWhenEmpty).length === 0;
+  let isDisabled = Boolean(props.disabled);
   if (!isDisabled && props.disabledWhenFalse) isDisabled = !getBoolean(props.disabledWhenFalse);
 
   const Icon = props.icon ? iconMap[props.icon] : null;
 
   return (
     <button
-      onClick={() => props.action && handleAction(props.action, navigate, setValue)}
+      onClick={isDisabled ? undefined : () => props.action && handleAction(props.action, navigate, setValue)}
       disabled={isDisabled}
       style={{
         fontFamily: "'Inter', sans-serif",

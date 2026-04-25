@@ -50,7 +50,7 @@ export interface ButtonNode extends BaseNode {
     iconSize?: number;
     iconColor?: string;
     action?: Action;
-    disabledWhenEmpty?: string;
+    disabled?: boolean;
     disabledWhenFalse?: string;
   };
 }
