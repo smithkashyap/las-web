@@ -182,7 +182,7 @@
               "props": {
                 "placeholder": "DD / MM / YYYY",
                 "stateKey": "dob",
-                "validation": "required",
+                "validation": "dob",
                 "inputStyle": {
                   "width": "100%",
                   "padding": "14px 16px",
