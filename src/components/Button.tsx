@@ -23,17 +23,22 @@ export function Button({ node }: { node: UINode }) {
     disabled?: boolean;
     disabledWhenFalse?: string;
     disableWhenInvalid?: boolean;
+    validateFields?: string[];
   };
-  const requiredFields = ['fullName', 'pan', 'dob', 'mobile', 'email'];
-  const hasEmptyRequiredFields = requiredFields.some((field) => {
+  const hasInvalidFields = props.validateFields?.some((field) => {
     const value = state.values[field];
-    return typeof value !== 'string' || value.trim() === '';
-  });
+    if (typeof value === 'string') return value.trim() === '';
+    return !value;
+  }) ?? false;
 
   let isDisabled = Boolean(props.disabled);
-  if (!isDisabled && props.disabledWhenFalse) isDisabled = !getBoolean(props.disabledWhenFalse);
+  if (!isDisabled && props.disabledWhenFalse) {
+    isDisabled = !getBoolean(props.disabledWhenFalse);
+  }
 
-  if (!isDisabled && props.disableWhenInvalid) isDisabled = hasErrors() || hasEmptyRequiredFields;
+  if (!isDisabled && props.disableWhenInvalid) {
+    isDisabled = hasErrors() || hasInvalidFields;
+  }
 
   const Icon = props.icon ? iconMap[props.icon] : null;
 

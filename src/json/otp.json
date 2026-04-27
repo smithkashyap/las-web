@@ -86,6 +86,7 @@
       "type": "otp-input",
       "props": {
         "length": 6,
+        "stateKey": "otp",
         "boxStyle": {
           "width": "48px",
           "height": "56px",
@@ -114,6 +115,11 @@
       "type": "button",
       "props": {
         "label": "Verify & Continue",
+        "disableWhenInvalid": true,
+        "validateFields": [
+          "otp"
+        ],
+        "actionId": "VERIFY_OTP",
         "action": {
           "type": "navigate",
           "payload": {

@@ -330,6 +330,13 @@
         "label": "Send OTP to Verify",
         "disabledWhenFalse": "tncAccepted",
         "disableWhenInvalid": true,
+        "validateFields": [
+          "fullName",
+          "pan",
+          "dob",
+          "mobile",
+          "email"
+        ],
         "action": {
           "type": "navigate",
           "payload": {

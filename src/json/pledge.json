@@ -255,7 +255,10 @@
           "type": "button",
           "props": {
             "label": "Fetch My Portfolio →",
-            "disabledWhenEmpty": "pledgeType",
+            "disableWhenInvalid": true,
+            "validateFields": [
+              "pledgeType"
+            ],
             "action": {
               "type": "navigate",
               "payload": {

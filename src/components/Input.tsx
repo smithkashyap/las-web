@@ -67,8 +67,9 @@ export function Input({ node }: { node: UINode }) {
       }
 
       setLocalValue(val);
+      const msg = validate(val);
       if (touched) {
-        setErrorMsg(validate(val));
+        setErrorMsg(msg);
       }
     },
     [isPhone, props.validation, touched]
