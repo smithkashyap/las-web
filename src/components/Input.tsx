@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
+import { validateValue, type ValidationRule } from '../utils/validationEngine';
 
 function formatPhone(raw: string): string {
   const digits = raw.replace(/\D/g, '').slice(0, 10);
@@ -20,67 +21,41 @@ export function Input({ node }: { node: UINode }) {
     maxLength?: number;
     format?: string;
     stateKey?: string;
-    validation?: 'required' | 'email' | 'pan' | 'dob';
+    validation?: { rules?: ValidationRule[] };
   };
 
   const isPhone = props.format === 'phone';
+  const hasPanRule = props.validation?.rules?.some((rule) => rule.type === 'pan') ?? false;
+  const rules = props.validation?.rules;
 
-  const validate = (val: string): string => {
-    if (!props.validation) return '';
-
-    switch (props.validation) {
-      case 'required':
-        return val.trim() === '' ? 'This field is required' : '';
-
-      case 'email':
-        return !/^\S+@\S+\.\S+$/.test(val) ? 'Invalid email' : '';
-
-      case 'dob':
-        return !/^\d{2}\/\d{2}\/\d{4}$/.test(val) ? 'Invalid date of birth' : '';
-
-      case 'pan':
-        return !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(val) ? 'Invalid PAN' : '';
-
-      default:
-        return '';
-    }
-  };
-
+  // Always sync value + global error — never show UI error here
   useEffect(() => {
     if (!props.stateKey) return;
-
-    const msg = validate(value);
+    const msg = validateValue(value, rules);
     setValue(props.stateKey, value);
     setError(props.stateKey, msg);
-  }, [props.stateKey, setError, setValue, value]);
+  }, [value, props.stateKey, rules, setValue, setError]);
+
+  // Show UI error only when touched — re-runs when either value or touched changes
+  useEffect(() => {
+    if (!touched) return;
+    const msg = validateValue(value, rules);
+    setErrorMsg(msg);
+  }, [value, touched, rules]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       let val = e.target.value;
-
-      if (props.validation === 'pan') {
-        val = val.toUpperCase();
-      }
-
-      if (isPhone) {
-        val = formatPhone(val);
-      }
-
+      if (hasPanRule) val = val.toUpperCase();
+      if (isPhone) val = formatPhone(val);
       setLocalValue(val);
-      const msg = validate(val);
-      if (touched) {
-        setErrorMsg(msg);
-      }
     },
-    [isPhone, props.validation, touched]
+    [hasPanRule, isPhone],
   );
 
   const onBlur = useCallback(() => {
     setTouched(true);
-    const msg = validate(value);
-    setErrorMsg(msg);
-  }, [value]);
-
+  }, []);
 
   return (
     <div>
@@ -98,7 +73,6 @@ export function Input({ node }: { node: UINode }) {
           border: errorMsg ? '1px solid red' : node.style?.border,
         }}
       />
-
       {errorMsg && (
         <div style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>
           {errorMsg}

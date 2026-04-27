@@ -13,7 +13,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function Button({ node }: { node: UINode }) {
   const navigate = useNavigate();
-  const { state, getBoolean, setValue, hasErrors } = useUIState();
+  const { state, getBoolean, setValue } = useUIState();
   const props = (node.props ?? {}) as {
     label?: string;
     icon?: string;
@@ -22,22 +22,29 @@ export function Button({ node }: { node: UINode }) {
     action?: Action;
     disabled?: boolean;
     disabledWhenFalse?: string;
+    disabledWhenEmpty?: string;
     disableWhenInvalid?: boolean;
     validateFields?: string[];
   };
-  const hasInvalidFields = props.validateFields?.some((field) => {
+  const validateFields = props.validateFields ?? [];
+  const hasInvalidFields = validateFields.some((field) => {
     const value = state.values[field];
-    if (typeof value === 'string') return value.trim() === '';
-    return !value;
-  }) ?? false;
+    const error = state.errors[field];
+    // Also check selections array for fields stored there
+    const selections = state.selections[field];
+    if (selections !== undefined) return selections.length === 0;
+    return !value || !!error;
+  });
 
   let isDisabled = Boolean(props.disabled);
   if (!isDisabled && props.disabledWhenFalse) {
     isDisabled = !getBoolean(props.disabledWhenFalse);
   }
-
+  if (!isDisabled && props.disabledWhenEmpty) {
+    isDisabled = (state.selections[props.disabledWhenEmpty] ?? []).length === 0;
+  }
   if (!isDisabled && props.disableWhenInvalid) {
-    isDisabled = hasErrors() || hasInvalidFields;
+    isDisabled = hasInvalidFields;
   }
 
   const Icon = props.icon ? iconMap[props.icon] : null;

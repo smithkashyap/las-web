@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from 're
 import { Calendar } from 'lucide-react';
 import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
+import { validateValue, type ValidationRule } from '../utils/validationEngine';
 
 function formatDate(raw: string): string {
   const d = raw.replace(/\D/g, '').slice(0, 8);
@@ -21,68 +22,76 @@ export function DateInput({ node }: { node: UINode }) {
   const ref = useRef<HTMLInputElement>(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [touched, setTouched] = useState(false);
+
   const props = (node.props ?? {}) as {
     placeholder?: string;
     maxLength?: number;
     inputStyle?: CSSProperties;
     iconButtonStyle?: CSSProperties;
     stateKey?: string;
-    validation?: 'required' | 'dob';
+    validation?: { rules?: ValidationRule[] };
   };
 
-  const validate = (val: string): string => {
-    if (props.validation !== 'required' && props.validation !== 'dob') return '';
+  const rules = props.validation?.rules;
 
-    if (props.validation === 'dob') {
-      return !/^\d{2}\/\d{2}\/\d{4}$/.test(val) ? 'Invalid date of birth' : '';
-    }
+  // Always sync value + global error — only validate when input is complete
+  useEffect(() => {
+    if (!props.stateKey) return;
+    const isComplete = value.length === 10;
+    const msg = isComplete ? validateValue(value, rules) : '';
+    setGlobalValue(props.stateKey, value);
+    setError(props.stateKey, msg);
+  }, [value, props.stateKey, rules, setGlobalValue, setError]);
 
-
-    return val.trim() === '' ? 'This field is required' : '';
-  };
+  // Show UI error only when touched AND input is complete
+  useEffect(() => {
+    if (!touched) return;
+    const isComplete = value.length === 10;
+    const msg = isComplete ? validateValue(value, rules) : '';
+    setErrorMsg(msg);
+  }, [value, touched, rules]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(formatDate(e.target.value));
   }, []);
 
-  useEffect(() => {
-    if (!props.stateKey) return;
-    setGlobalValue(props.stateKey, value);
-    const msg = validate(value);
-    setError(props.stateKey, msg);
-    if (touched) {
-      setErrorMsg(msg);
-    }
-  }, [props.stateKey, setError, setGlobalValue, value]);
-
   const onBlur = useCallback(() => {
     setTouched(true);
-    const msg = validate(value);
-    setErrorMsg(msg);
-  }, [value]);
+  }, []);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', ...node.style }}>
-    <div style={{ position: 'relative', display: 'flex', alignItems: 'center', ...node.style }}>
-      <input
-        type="text"
-        inputMode="numeric"
-        placeholder={props.placeholder ?? 'DD/MM/YYYY'}
-        maxLength={props.maxLength ?? 10}
-        style={{ fontFamily: "'Inter', sans-serif", paddingRight: '48px', ...props.inputStyle }}
-        value={value}
-        onChange={handleChange}
-        onBlur={onBlur}
-      />
-      <button
-        type="button"
-        onClick={() => { try { ref.current?.showPicker(); } catch { ref.current?.click(); } }}
-        style={{ position: 'absolute', right: '12px', background: 'none', border: 'none', cursor: 'pointer', padding: '4px', display: 'flex', ...props.iconButtonStyle }}
-      >
-        <Calendar size={18} color="#94a3b8" />
-      </button>
-      <input ref={ref} type="date" onChange={(e) => setValue(e.target.value ? isoToFormatted(e.target.value) : '')} style={{ position: 'absolute', opacity: 0, width: 0, height: 0, pointerEvents: 'none' }} tabIndex={-1} />
-    </div>
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+        <input
+          type="text"
+          inputMode="numeric"
+          placeholder={props.placeholder ?? 'DD/MM/YYYY'}
+          maxLength={props.maxLength ?? 10}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            paddingRight: '48px',
+            ...props.inputStyle,
+            border: errorMsg ? '1px solid red' : props.inputStyle?.border,
+          }}
+          value={value}
+          onChange={handleChange}
+          onBlur={onBlur}
+        />
+        <button
+          type="button"
+          onClick={() => { try { ref.current?.showPicker(); } catch { ref.current?.click(); } }}
+          style={{ position: 'absolute', right: '12px', background: 'none', border: 'none', cursor: 'pointer', padding: '4px', display: 'flex', ...props.iconButtonStyle }}
+        >
+          <Calendar size={18} color="#94a3b8" />
+        </button>
+        <input
+          ref={ref}
+          type="date"
+          onChange={(e) => { setValue(e.target.value ? isoToFormatted(e.target.value) : ''); setTouched(true); }}
+          style={{ position: 'absolute', opacity: 0, width: 0, height: 0, pointerEvents: 'none' }}
+          tabIndex={-1}
+        />
+      </div>
       {errorMsg && (
         <div style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>
           {errorMsg}

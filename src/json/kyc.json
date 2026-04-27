@@ -91,7 +91,14 @@
               "props": {
                 "placeholder": "Rahul Sharma",
                 "stateKey": "fullName",
-                "validation": "required"
+                "validation": {
+                  "rules": [
+                    {
+                      "type": "required",
+                      "message": "Full name is required"
+                    }
+                  ]
+                }
               },
               "style": {
                 "width": "100%",
@@ -131,7 +138,18 @@
                 "placeholder": "ABCPS1234K",
                 "maxLength": 10,
                 "stateKey": "pan",
-                "validation": "pan"
+                "validation": {
+                  "rules": [
+                    {
+                      "type": "required",
+                      "message": "PAN is mandatory"
+                    },
+                    {
+                      "type": "pan",
+                      "message": "Invalid PAN format"
+                    }
+                  ]
+                }
               },
               "style": {
                 "width": "100%",
@@ -182,7 +200,18 @@
               "props": {
                 "placeholder": "DD / MM / YYYY",
                 "stateKey": "dob",
-                "validation": "dob",
+                "validation": {
+                  "rules": [
+                    {
+                      "type": "required",
+                      "message": "Date of birth is required"
+                    },
+                    {
+                      "type": "dob",
+                      "message": "Invalid date of birth"
+                    }
+                  ]
+                },
                 "inputStyle": {
                   "width": "100%",
                   "padding": "14px 16px",
@@ -253,7 +282,19 @@
                     "inputType": "tel",
                     "format": "phone",
                     "stateKey": "mobile",
-                    "validation": "required"
+                    "validation": {
+                      "rules": [
+                        {
+                          "type": "required",
+                          "message": "Mobile number is required"
+                        },
+                        {
+                          "type": "regex",
+                          "pattern": "^[0-9]{5}\\s?[0-9]{5}$",
+                          "message": "Enter valid 10-digit mobile number"
+                        }
+                      ]
+                    }
                   },
                   "style": {
                     "flex": "1",
@@ -295,7 +336,18 @@
                 "placeholder": "rahul.sharma@gmail.com",
                 "inputType": "email",
                 "stateKey": "email",
-                "validation": "email"
+                "validation": {
+                  "rules": [
+                    {
+                      "type": "required",
+                      "message": "Email is required"
+                    },
+                    {
+                      "type": "email",
+                      "message": "Invalid email address"
+                    }
+                  ]
+                }
               },
               "style": {
                 "width": "100%",
@@ -338,9 +390,21 @@
           "email"
         ],
         "action": {
-          "type": "navigate",
+          "type": "api",
           "payload": {
-            "route": "/otp"
+            "api": "submitKyc",
+            "onSuccess": {
+              "type": "navigate",
+              "payload": {
+                "route": "/otp"
+              }
+            },
+            "onError": {
+              "type": "navigate",
+              "payload": {
+                "route": "/otp"
+              }
+            }
           }
         }
       },

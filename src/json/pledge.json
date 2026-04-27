@@ -255,16 +255,13 @@
           "type": "button",
           "props": {
             "label": "Fetch My Portfolio →",
-            "disableWhenInvalid": true,
-            "validateFields": [
-              "pledgeType"
-            ],
             "action": {
               "type": "navigate",
               "payload": {
                 "route": "/connect-portfolio"
               }
-            }
+            },
+            "disabledWhenEmpty": "pledgeType"
           },
           "style": {
             "width": "100%",

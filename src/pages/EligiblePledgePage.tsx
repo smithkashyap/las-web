@@ -8,15 +8,6 @@ function fmt(n: number) {
   return `₹${n.toLocaleString('en-IN')}`;
 }
 
-function findSelectableList(node: UINode): UINode | null {
-  if (node.type === 'selectable-list') return node;
-  for (const child of node.children ?? []) {
-    const match = findSelectableList(child);
-    if (match) return match;
-  }
-  return null;
-}
-
 function sumAmounts(items: SelectableItemData[]) {
   return items.reduce(
     (totals, item) => ({
@@ -27,27 +18,47 @@ function sumAmounts(items: SelectableItemData[]) {
   );
 }
 
+function findSelectableListItems(node: UINode): SelectableItemData[] {
+  if (node.type === 'selectable-list') {
+    return ((node.props as { items?: SelectableItemData[] } | undefined)?.items ?? []);
+  }
+  for (const child of node.children ?? []) {
+    const found = findSelectableListItems(child);
+    if (found.length) return found;
+  }
+  return [];
+}
+
+function injectProps(
+  node: UINode,
+  items: SelectableItemData[],
+  selectedValues: string[],
+  cb: (selected: SelectableItemData[]) => void,
+): UINode {
+  if (node.type === 'selectable-list') {
+    return { ...node, props: { ...(node.props ?? {}), items, selectedValues, onSelectionChange: cb } };
+  }
+  if (node.children) {
+    return { ...node, children: node.children.map((child) => injectProps(child, items, selectedValues, cb)) };
+  }
+  return node;
+}
+
 export function EligiblePledgePage() {
-  const items = useMemo(() => {
-    const listNode = findSelectableList(eligiblePledgeJson as UINode);
-    return ((listNode?.props as { items?: SelectableItemData[] } | undefined)?.items ?? []);
-  }, []);
+  const items = useMemo(() => findSelectableListItems(eligiblePledgeJson as UINode), []);
 
-  const defaultSelectedItems = useMemo(
-    () => items.filter((item) => !item.disabled),
-    [items],
+  const defaultSelected = useMemo(() => items.filter((i) => !i.disabled), [items]);
+  const defaultTotals = useMemo(() => sumAmounts(defaultSelected), [defaultSelected]);
+
+  const [selectedValues, setSelectedValues] = useState<string[]>(
+    () => defaultSelected.map((i) => i.value),
   );
-
-  const initialTotals = useMemo(
-    () => sumAmounts(defaultSelectedItems),
-    [defaultSelectedItems],
-  );
-
-  const [eligibleTotal, setEligibleTotal] = useState(initialTotals.eligibleTotal);
-  const [loanTotal, setLoanTotal] = useState(initialTotals.loanTotal);
-  const [selectedCount, setSelectedCount] = useState(defaultSelectedItems.length);
+  const [eligibleTotal, setEligibleTotal] = useState(defaultTotals.eligibleTotal);
+  const [loanTotal, setLoanTotal] = useState(defaultTotals.loanTotal);
+  const [selectedCount, setSelectedCount] = useState(defaultSelected.length);
 
   const handleSelectionChange = useCallback((selected: SelectableItemData[]) => {
+    setSelectedValues(selected.map((i) => i.value));
     const totals = sumAmounts(selected);
     setEligibleTotal(totals.eligibleTotal);
     setLoanTotal(totals.loanTotal);
@@ -63,31 +74,10 @@ export function EligiblePledgePage() {
     [eligibleTotal, loanTotal, selectedCount],
   );
 
-  const nodeWithCallback = useMemo(() => {
-    const inject = (node: UINode): UINode => {
-      if (node.type === 'selectable-list') {
-        return {
-          ...node,
-          props: {
-            ...(node.props ?? {}),
-            items,
-            onSelectionChange: handleSelectionChange,
-          },
-        };
-      }
+  const nodeWithProps = useMemo(
+    () => injectProps(eligiblePledgeJson as UINode, items, selectedValues, handleSelectionChange),
+    [items, selectedValues, handleSelectionChange],
+  );
 
-      if (node.children) {
-        return {
-          ...node,
-          children: node.children.map(inject),
-        };
-      }
-
-      return node;
-    };
-
-    return inject(eligiblePledgeJson as UINode);
-  }, [handleSelectionChange, items]);
-
-  return <DynamicRenderer node={nodeWithCallback} scope={scope} />;
+  return <DynamicRenderer node={nodeWithProps} scope={scope} />;
 }

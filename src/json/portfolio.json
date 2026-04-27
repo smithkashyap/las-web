@@ -67,16 +67,16 @@
             "stateKey": "activeTab",
             "defaultValue": "shares",
             "tabs": [
-              {
-                "key": "shares",
-                "label": "Shares (12)"
-              },
-              {
-                "key": "mf",
-                "label": "Mutual Funds (8)"
-              }
+              { "key": "shares", "label": "Shares (12)" },
+              { "key": "mf", "label": "Mutual Funds (8)" }
             ],
+            "containerStyle": {
+              "display": "flex",
+              "gap": "8px",
+              "width": "100%"
+            },
             "activeStyle": {
+              "flex": 1,
               "padding": "12px",
               "borderRadius": "12px",
               "backgroundColor": "#3b82f6",
@@ -84,6 +84,7 @@
               "textAlign": "center"
             },
             "inactiveStyle": {
+              "flex": 1,
               "padding": "12px",
               "borderRadius": "12px",
               "backgroundColor": "transparent",
