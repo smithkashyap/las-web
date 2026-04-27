@@ -36,4 +36,5 @@ const httpClient: HttpClient = {
   },
 };
 
+export const apiClient = httpClient;
 export const sdk = new CoreSDK({ httpClient, storage });

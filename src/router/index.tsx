@@ -6,11 +6,13 @@ import { ConnectPortfolioPage } from '../pages/ConnectPortfolioPage';
 import { PortfolioPage } from '../pages/PortfolioPage';
 import { EligiblePledgePage } from '../pages/EligiblePledgePage';
 import { KycVerificationPage } from '../pages/KycVerificationPage';
+import { RouteResolver } from './RouteResolver';
 
 export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<RouteResolver />} />
         <Route path="/kyc" element={<KycPage />} />
         <Route path="/otp" element={<OtpPage />} />
         <Route path="/pledge" element={<PledgePage />} />
@@ -18,7 +20,7 @@ export function AppRouter() {
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/eligible-pledge" element={<EligiblePledgePage />} />
         <Route path="/kyc-verification" element={<KycVerificationPage />} />
-        <Route path="*" element={<Navigate to="/kyc" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
