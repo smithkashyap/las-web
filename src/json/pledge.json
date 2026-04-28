@@ -85,7 +85,7 @@
                 "title": "Loan Against Shares",
                 "badge": "LAS",
                 "badgeColor": "#00A9EB",
-                "badgeBg": "rgba(0,169,235,0.2)",
+                "badgeBg": "#00A9EB33",
                 "ltv": "LTV up to",
                 "ltvValue": "50% equity value",
                 "rate": "Rate from",
@@ -102,7 +102,7 @@
                 },
                 "selectedStyle": {
                   "border": "1px solid #00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.1)"
+                  "backgroundColor": "#00A9EB1A"
                 },
                 "headerStyle": {
                   "display": "flex",
@@ -160,7 +160,7 @@
                 "title": "Loan Against MF",
                 "badge": "LAMF",
                 "badgeColor": "#a78bfa",
-                "badgeBg": "rgba(167,139,250,0.2)",
+                "badgeBg": "#A78BFA33",
                 "ltv": "LTV up to",
                 "ltvValue": "80% Debt / 50% Equity",
                 "rate": "Rate from",
@@ -177,7 +177,7 @@
                 },
                 "selectedStyle": {
                   "border": "1px solid #00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.1)"
+                  "backgroundColor": "#00A9EB1A"
                 },
                 "headerStyle": {
                   "display": "flex",

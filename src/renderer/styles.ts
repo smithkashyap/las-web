@@ -1,29 +1,49 @@
 import type { CSSProperties } from 'react';
 import type { SizeVariant } from './types';
 
-// Exact dark theme colors
+// ── Dark theme tokens ──
 export const theme = {
+  // Backgrounds
   background: '#121212',
   surface: '#161616',
   surface2: '#232323',
+
+  // Borders
   border: '#3A4048',
+
+  // Text
   textPrimary: '#FBFBFB',
   textSecondary: '#878787',
   muted: '#6D6D6D',
+
+  // Brand
   primary: '#00A9EB',
   primary2: '#2596FF',
+
+  // Semantic
   success: '#28A745',
   danger: '#B93333',
   warning: '#FDBE17',
+
+  // Neutral
   white: '#FFFFFF',
+  transparent: 'transparent',
+
+  // Alpha overlays (rgba → hex-alpha)
+  primaryAlpha5: '#00A9EB0D',   // primary 5%
+  primaryAlpha10: '#00A9EB1A',  // primary 10%
+  primaryAlpha15: '#00A9EB26',  // primary 15%
+  primaryAlpha3: '#00A9EB08',   // primary 3%
+  successAlpha15: '#28A74526',  // success 15%
+  dangerAlpha15: '#B9333326',   // danger 15%
+  warningAlpha15: '#FDBE1726',  // warning 15%
 } as const;
 
 export type ThemeColor = keyof typeof theme;
 
-// Variant styles for each component type
+// ── Variant styles ──
 type VariantStyleMap = Record<string, CSSProperties>;
 
-// Component-specific variant styles
 const buttonVariants: VariantStyleMap = {
   primary: {
     background: `linear-gradient(135deg, ${theme.primary}, ${theme.primary2})`,
@@ -42,7 +62,7 @@ const buttonVariants: VariantStyleMap = {
     cursor: 'pointer',
   },
   ghost: {
-    backgroundColor: 'transparent',
+    backgroundColor: theme.transparent,
     color: theme.textSecondary,
     border: 'none',
     cursor: 'pointer',
@@ -58,35 +78,35 @@ const buttonVariants: VariantStyleMap = {
     padding: '0',
   },
   info: {
-    backgroundColor: 'rgba(0,169,235,0.05)',
+    backgroundColor: theme.primaryAlpha5,
     border: `1px solid ${theme.primary}`,
     borderRadius: '12px',
     color: theme.primary,
     cursor: 'default',
   },
   success: {
-    backgroundColor: 'rgba(40,167,69,0.15)',
+    backgroundColor: theme.successAlpha15,
     border: `1px solid ${theme.success}`,
     borderRadius: '12px',
     color: theme.success,
     cursor: 'default',
   },
   danger: {
-    backgroundColor: 'rgba(185,51,51,0.15)',
+    backgroundColor: theme.dangerAlpha15,
     border: `1px solid ${theme.danger}`,
     borderRadius: '12px',
     color: theme.danger,
     cursor: 'default',
   },
   warning: {
-    backgroundColor: 'rgba(253,190,23,0.15)',
+    backgroundColor: theme.warningAlpha15,
     border: `1px solid ${theme.warning}`,
     borderRadius: '12px',
     color: theme.warning,
     cursor: 'default',
   },
   muted: {
-    backgroundColor: 'transparent',
+    backgroundColor: theme.transparent,
     color: theme.muted,
     border: 'none',
     cursor: 'default',
@@ -143,12 +163,12 @@ const containerVariants: VariantStyleMap = {
   info: {
     borderRadius: '12px',
     border: `1px solid ${theme.primary}`,
-    backgroundColor: 'rgba(0,169,235,0.05)',
+    backgroundColor: theme.primaryAlpha5,
     padding: '12px 16px',
     textAlign: 'center',
   },
   success: {
-    backgroundColor: 'rgba(40,167,69,0.15)',
+    backgroundColor: theme.successAlpha15,
     padding: '4px 10px',
     borderRadius: '8px',
   },
@@ -264,112 +284,43 @@ const imageVariants: VariantStyleMap = {
   },
 };
 
-// Size styles for each component type
+// ── Size styles ──
 const buttonSizes: VariantStyleMap = {
-  sm: {
-    padding: '8px 12px',
-    fontSize: '12px',
-    borderRadius: '8px',
-  },
-  md: {
-    padding: '12px 20px',
-    fontSize: '14px',
-    borderRadius: '12px',
-  },
-  lg: {
-    padding: '16px',
-    fontSize: '16px',
-    borderRadius: '16px',
-    width: '100%',
-  },
-  full: {
-    padding: '16px',
-    fontSize: '16px',
-    borderRadius: '16px',
-    width: '100%',
-  },
+  sm: { padding: '8px 12px', fontSize: '12px', borderRadius: '8px' },
+  md: { padding: '12px 20px', fontSize: '14px', borderRadius: '12px' },
+  lg: { padding: '16px', fontSize: '16px', borderRadius: '16px', width: '100%' },
+  full: { padding: '16px', fontSize: '16px', borderRadius: '16px', width: '100%' },
 };
 
 const inputSizes: VariantStyleMap = {
-  sm: {
-    padding: '8px 10px',
-    fontSize: '12px',
-    borderRadius: '8px',
-  },
-  md: {
-    padding: '12px 14px',
-    fontSize: '14px',
-    borderRadius: '10px',
-  },
-  lg: {
-    padding: '16px 18px',
-    fontSize: '16px',
-    borderRadius: '12px',
-  },
-  full: {
-    padding: '14px 16px',
-    fontSize: '14px',
-    borderRadius: '12px',
-    width: '100%',
-  },
+  sm: { padding: '8px 10px', fontSize: '12px', borderRadius: '8px' },
+  md: { padding: '12px 14px', fontSize: '14px', borderRadius: '10px' },
+  lg: { padding: '16px 18px', fontSize: '16px', borderRadius: '12px' },
+  full: { padding: '14px 16px', fontSize: '14px', borderRadius: '12px', width: '100%' },
 };
 
 const containerSizes: VariantStyleMap = {
-  sm: {
-    padding: '8px',
-    gap: '4px',
-  },
-  md: {
-    padding: '12px',
-    gap: '8px',
-  },
-  lg: {
-    padding: '16px',
-    gap: '12px',
-  },
-  full: {
-    padding: '16px',
-    gap: '12px',
-    width: '100%',
-    height: '100%',
-  },
+  sm: { padding: '8px', gap: '4px' },
+  md: { padding: '12px', gap: '8px' },
+  lg: { padding: '16px', gap: '12px' },
+  full: { padding: '16px', gap: '12px', width: '100%', height: '100%' },
 };
 
 const textSizes: VariantStyleMap = {
-  sm: {
-    fontSize: '12px',
-  },
-  md: {
-    fontSize: '14px',
-  },
-  lg: {
-    fontSize: '16px',
-  },
-  full: {
-    fontSize: '18px',
-  },
+  sm: { fontSize: '12px' },
+  md: { fontSize: '14px' },
+  lg: { fontSize: '16px' },
+  full: { fontSize: '18px' },
 };
 
 const checkboxSizes: VariantStyleMap = {
-  sm: {
-    padding: '6px',
-    fontSize: '12px',
-  },
-  md: {
-    padding: '10px',
-    fontSize: '14px',
-  },
-  lg: {
-    padding: '14px',
-    fontSize: '16px',
-  },
-  full: {
-    padding: '16px',
-    fontSize: '16px',
-  },
+  sm: { padding: '6px', fontSize: '12px' },
+  md: { padding: '10px', fontSize: '14px' },
+  lg: { padding: '14px', fontSize: '16px' },
+  full: { padding: '16px', fontSize: '16px' },
 };
 
-// Registry of all variant styles
+// ── Registries ──
 const variantStyles: Record<string, VariantStyleMap> = {
   button: buttonVariants,
   input: inputVariants,
@@ -380,7 +331,6 @@ const variantStyles: Record<string, VariantStyleMap> = {
   image: imageVariants,
 };
 
-// Registry of all size styles
 const sizeStyles: Record<string, VariantStyleMap> = {
   button: buttonSizes,
   input: inputSizes,
@@ -389,25 +339,19 @@ const sizeStyles: Record<string, VariantStyleMap> = {
   checkbox: checkboxSizes,
 };
 
-/**
- * Get variant style for a component type
- */
+// ── Public API ──
+
 export function getVariantStyle(type: string, variant: string): CSSProperties {
   return variantStyles[type]?.[variant] ?? {};
 }
 
-/**
- * Get size style for a component type
- */
 export function getSizeStyleFn(type: string, size: string): CSSProperties {
   return sizeStyles[type]?.[size] ?? {};
 }
 
 /**
- * Resolve all styles for a node following the merge order:
- * base component style + variant style + size style + node.style
- *
- * If node has responsive blocks, resolves responsive style as the override layer.
+ * Resolve all styles for a node.
+ * Merge order: base → variant → size → node.style (or responsive override)
  */
 export function resolveNodeStyle(
   node: { type?: string; props?: Record<string, unknown>; style?: CSSProperties; responsive?: { mobile?: { style?: CSSProperties }; tablet?: { style?: CSSProperties }; desktop?: { style?: CSSProperties } } },
@@ -420,7 +364,6 @@ export function resolveNodeStyle(
   const variantStyle = variant ? getVariantStyle(componentType, variant) : {};
   const sizeStyle = size ? getSizeStyleFn(componentType, size) : {};
 
-  // Resolve responsive style if present
   let overrideStyle: CSSProperties = node.style ?? {};
   if (node.responsive) {
     const width = typeof window !== 'undefined' ? window.innerWidth : 0;
@@ -430,35 +373,19 @@ export function resolveNodeStyle(
     overrideStyle = { ...mobileStyle, ...deviceStyle };
   }
 
-  // Merge in order: base → variant → size → node.style/responsive
-  return {
-    ...baseStyle,
-    ...variantStyle,
-    ...sizeStyle,
-    ...overrideStyle,
-  };
+  return { ...baseStyle, ...variantStyle, ...sizeStyle, ...overrideStyle };
 }
 
-/**
- * Get text color based on colorVariant prop
- */
+/** Map colorVariant prop to a theme color */
 export function getTextColor(colorVariant?: string): string {
   switch (colorVariant) {
-    case 'primary':
-      return theme.textPrimary;
-    case 'secondary':
-      return theme.textSecondary;
-    case 'muted':
-      return theme.muted;
-    case 'info':
-      return theme.primary;
-    case 'success':
-      return theme.success;
-    case 'danger':
-      return theme.danger;
-    case 'warning':
-      return theme.warning;
-    default:
-      return theme.textPrimary;
+    case 'primary': return theme.textPrimary;
+    case 'secondary': return theme.textSecondary;
+    case 'muted': return theme.muted;
+    case 'info': return theme.primary;
+    case 'success': return theme.success;
+    case 'danger': return theme.danger;
+    case 'warning': return theme.warning;
+    default: return theme.textPrimary;
   }
 }

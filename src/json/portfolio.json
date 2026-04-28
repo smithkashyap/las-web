@@ -129,7 +129,7 @@
                 {
                   "type": "container",
                   "style": {
-                    "backgroundColor": "rgba(0,169,235,0.15)",
+                    "backgroundColor": "#00A9EB26",
                     "padding": "4px 10px",
                     "borderRadius": "8px"
                   },

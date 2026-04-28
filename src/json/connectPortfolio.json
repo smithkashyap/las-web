@@ -75,7 +75,7 @@
                 },
                 "activeContainerStyle": {
                   "border": "1px solid #00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.03)"
+                  "backgroundColor": "#00A9EB08"
                 },
                 "logoStyle": {
                   "width": "40px",
@@ -131,7 +131,7 @@
                 },
                 "activeContainerStyle": {
                   "border": "1px solid #00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.03)"
+                  "backgroundColor": "#00A9EB08"
                 },
                 "logoStyle": {
                   "width": "40px",
@@ -160,7 +160,7 @@
                 },
                 "actionStyle": {
                   "color": "#00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.15)",
+                  "backgroundColor": "#00A9EB26",
                   "padding": "4px 12px",
                   "borderRadius": "8px",
                   "border": "none",
@@ -195,7 +195,7 @@
                 },
                 "activeContainerStyle": {
                   "border": "1px solid #00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.03)"
+                  "backgroundColor": "#00A9EB08"
                 },
                 "logoStyle": {
                   "width": "40px",
@@ -251,7 +251,7 @@
                 },
                 "activeContainerStyle": {
                   "border": "1px solid #00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.03)"
+                  "backgroundColor": "#00A9EB08"
                 },
                 "logoStyle": {
                   "width": "40px",
@@ -280,7 +280,7 @@
                 },
                 "actionStyle": {
                   "color": "#00A9EB",
-                  "backgroundColor": "rgba(0,169,235,0.15)",
+                  "backgroundColor": "#00A9EB26",
                   "padding": "4px 12px",
                   "borderRadius": "8px",
                   "border": "none",
