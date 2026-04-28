@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DynamicRenderer } from '../renderer/DynamicRenderer';
 import localKycJson from '../json/kyc.json';
 import { Spinner } from '../components/Spinner';
@@ -11,8 +11,11 @@ export function KycPage() {
   const [loading, setLoading] = useState(false);
   const { state } = useUIState();
   const { data, isLoading, isError } = useKycSchema();
+  const initLoading = useRef<Boolean>(false);
 
   useEffect(() => {
+    setLoading(true);
+
     setHandleActionContext({
       getFormData: () => ({
         fullName: typeof state.values.fullName === 'string' ? state.values.fullName : '',
@@ -23,6 +26,7 @@ export function KycPage() {
       }),
       setLoading,
     });
+    setLoading(false);
 
     return () => {
       setHandleActionContext({});

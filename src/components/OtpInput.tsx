@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState, type CSSProperties } from 'react';
 import type { UINode } from '../renderer/types';
 import { useUIState } from '../state/uiState';
+import { resolveResponsiveStyle } from '../renderer/responsive';
 
 export function OtpInput({ node }: { node: UINode }) {
   const { setValue, setError } = useUIState();
@@ -58,7 +59,7 @@ export function OtpInput({ node }: { node: UINode }) {
   };
 
   return (
-    <div style={{ ...props.containerStyle, ...node.style }}>
+    <div style={{ ...props.containerStyle, ...resolveResponsiveStyle(node) }}>
       {digits.map((d, i) => (
         <input key={i} ref={(el) => { refs.current[i] = el; }} type="text" inputMode="numeric" maxLength={1}
           value={d} onChange={(e) => onChange(i, e.target.value)} onKeyDown={(e) => onKey(i, e)}

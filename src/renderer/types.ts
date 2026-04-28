@@ -1,5 +1,11 @@
 import type { CSSProperties } from 'react';
 
+export interface ResponsiveStyle {
+  mobile?: { style?: CSSProperties };
+  tablet?: { style?: CSSProperties };
+  desktop?: { style?: CSSProperties };
+}
+
 export interface NavigateAction {
   type: 'navigate';
   payload: { route: string };
@@ -34,6 +40,7 @@ export interface BaseNode {
   type: string;
   props?: Record<string, unknown>;
   style?: CSSProperties;
+  responsive?: ResponsiveStyle;
   children?: UINode[];
 }
 

@@ -3,6 +3,7 @@ import { Calendar } from 'lucide-react';
 import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
 import { validateValue, type ValidationRule } from '../utils/validationEngine';
+import { resolveResponsiveStyle } from '../renderer/responsive';
 
 function formatDate(raw: string): string {
   const d = raw.replace(/\D/g, '').slice(0, 8);
@@ -60,7 +61,7 @@ export function DateInput({ node }: { node: UINode }) {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', ...node.style }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', ...resolveResponsiveStyle(node) }}>
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
         <input
           type="text"

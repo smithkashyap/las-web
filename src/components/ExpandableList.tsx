@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DynamicRenderer } from '../renderer/DynamicRenderer';
 import type { UINode } from '../renderer/types';
+import { resolveResponsiveStyle } from '../renderer/responsive';
 
 interface ExpandableListProps {
   itemType: string;
@@ -27,7 +28,7 @@ export function ExpandableList({ node }: { node: UINode }) {
     : `${remaining} ${props.moreLabel ?? 'more holdings'}`;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...node.style }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...resolveResponsiveStyle(node) }}>
       {visible.map((item, i) => (
         <DynamicRenderer
           key={i}

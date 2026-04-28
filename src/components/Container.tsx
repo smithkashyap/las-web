@@ -1,9 +1,11 @@
 import { DynamicRenderer } from '../renderer/DynamicRenderer';
 import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
+import { resolveResponsiveStyle } from '../renderer/responsive';
 
 export function Container({ node }: { node: UINode }) {
   const { toggleSelection, isSelected } = useUIState();
+  const resolvedStyle = resolveResponsiveStyle(node);
   const props = (node.props ?? {}) as {
     selectable?: boolean;
     selectionKey?: string;
@@ -16,9 +18,9 @@ export function Container({ node }: { node: UINode }) {
       <div
         onClick={() => toggleSelection(props.selectionKey!, props.value!)}
         style={{
-          ...node.style,
-          border: selected ? '1px solid #3b82f6' : (node.style?.border ?? '1px solid #1e293b'),
-          backgroundColor: selected ? 'rgba(59,130,246,0.1)' : (node.style?.backgroundColor ?? '#111827'),
+          ...resolvedStyle,
+          border: selected ? '1px solid #3b82f6' : (resolvedStyle?.border ?? '1px solid #1e293b'),
+          backgroundColor: selected ? 'rgba(59,130,246,0.1)' : (resolvedStyle?.backgroundColor ?? '#111827'),
           cursor: 'pointer',
           transition: 'border-color 0.2s, background-color 0.2s',
         }}
@@ -29,7 +31,7 @@ export function Container({ node }: { node: UINode }) {
   }
 
   return (
-    <div style={node.style}>
+    <div style={resolvedStyle}>
       {node.children?.map((child, i) => <DynamicRenderer key={i} node={child} />)}
     </div>
   );

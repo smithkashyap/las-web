@@ -4,6 +4,7 @@ import { DynamicRenderer } from '../renderer/DynamicRenderer';
 import { handleAction } from '../utils/handleAction';
 import { useUIState } from '../state/uiState';
 import type { UINode, Action } from '../renderer/types';
+import { resolveResponsiveStyle } from '../renderer/responsive';
 
 interface DynamicListProps {
   itemType: string;
@@ -28,7 +29,7 @@ export function DynamicList({ node }: { node: UINode }) {
   );
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...node.style }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...resolveResponsiveStyle(node) }}>
       {items.map((item, i) => {
         const hasItemAction = !!item.action;
         const hasListAction = !!props.onItemClick;

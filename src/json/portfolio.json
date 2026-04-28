@@ -1,30 +1,11 @@
 {
   "type": "container",
-  "style": {
-    "display": "flex",
-    "flexDirection": "column",
-    "height": "100vh",
-    "backgroundColor": "#0f172a"
-  },
   "children": [
     {
       "type": "container",
-      "style": {
-        "flex": "1",
-        "overflowY": "auto",
-        "padding": "20px",
-        "display": "flex",
-        "flexDirection": "column",
-        "gap": "20px"
-      },
       "children": [
         {
           "type": "container",
-          "style": {
-            "display": "flex",
-            "alignItems": "center",
-            "gap": "16px"
-          },
           "children": [
             {
               "type": "button",
@@ -36,17 +17,49 @@
                   "type": "goBack"
                 }
               },
-              "style": {
-                "width": "40px",
-                "height": "40px",
-                "borderRadius": "50%",
-                "backgroundColor": "#111827",
-                "border": "1px solid #1e293b",
-                "display": "flex",
-                "alignItems": "center",
-                "justifyContent": "center",
-                "cursor": "pointer",
-                "padding": "0"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "width": "40px",
+                    "height": "40px",
+                    "borderRadius": "50%",
+                    "backgroundColor": "#111827",
+                    "border": "1px solid #1e293b",
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "cursor": "pointer",
+                    "padding": "0"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "width": "40px",
+                    "height": "40px",
+                    "borderRadius": "50%",
+                    "backgroundColor": "#111827",
+                    "border": "1px solid #1e293b",
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "cursor": "pointer",
+                    "padding": "0"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "width": "40px",
+                    "height": "40px",
+                    "borderRadius": "50%",
+                    "backgroundColor": "#111827",
+                    "border": "1px solid #1e293b",
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "cursor": "pointer",
+                    "padding": "0"
+                  }
+                }
               }
             },
             {
@@ -55,11 +68,48 @@
                 "value": "Your Portfolio",
                 "variant": "h3"
               },
-              "style": {
-                "color": "#f1f5f9"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                }
               }
             }
-          ]
+          ],
+          "responsive": {
+            "mobile": {
+              "style": {
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "16px"
+              }
+            },
+            "tablet": {
+              "style": {
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "16px"
+              }
+            },
+            "desktop": {
+              "style": {
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "16px"
+              }
+            }
+          }
         },
         {
           "type": "tab-bar",
@@ -67,8 +117,14 @@
             "stateKey": "activeTab",
             "defaultValue": "shares",
             "tabs": [
-              { "key": "shares", "label": "Shares (12)" },
-              { "key": "mf", "label": "Mutual Funds (8)" }
+              {
+                "key": "shares",
+                "label": "Shares (12)"
+              },
+              {
+                "key": "mf",
+                "label": "Mutual Funds (8)"
+              }
             ],
             "containerStyle": {
               "display": "flex",
@@ -105,23 +161,9 @@
         },
         {
           "type": "container",
-          "style": {
-            "borderRadius": "16px",
-            "border": "1px solid #1e293b",
-            "backgroundColor": "#111827",
-            "padding": "20px",
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "8px"
-          },
           "children": [
             {
               "type": "container",
-              "style": {
-                "display": "flex",
-                "justifyContent": "space-between",
-                "alignItems": "center"
-              },
               "children": [
                 {
                   "type": "text",
@@ -129,17 +171,26 @@
                     "value": "Total Portfolio Value",
                     "variant": "caption"
                   },
-                  "style": {
-                    "color": "#94a3b8"
+                  "responsive": {
+                    "mobile": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    },
+                    "tablet": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    },
+                    "desktop": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    }
                   }
                 },
                 {
                   "type": "container",
-                  "style": {
-                    "backgroundColor": "rgba(59,130,246,0.15)",
-                    "padding": "4px 10px",
-                    "borderRadius": "8px"
-                  },
                   "children": [
                     {
                       "type": "text",
@@ -147,13 +198,73 @@
                         "value": "Zerodha",
                         "variant": "badge"
                       },
-                      "style": {
-                        "color": "#3b82f6"
+                      "responsive": {
+                        "mobile": {
+                          "style": {
+                            "color": "#3b82f6"
+                          }
+                        },
+                        "tablet": {
+                          "style": {
+                            "color": "#3b82f6"
+                          }
+                        },
+                        "desktop": {
+                          "style": {
+                            "color": "#3b82f6"
+                          }
+                        }
                       }
                     }
-                  ]
+                  ],
+                  "responsive": {
+                    "mobile": {
+                      "style": {
+                        "backgroundColor": "rgba(59,130,246,0.15)",
+                        "padding": "4px 10px",
+                        "borderRadius": "8px"
+                      }
+                    },
+                    "tablet": {
+                      "style": {
+                        "backgroundColor": "rgba(59,130,246,0.15)",
+                        "padding": "4px 10px",
+                        "borderRadius": "8px"
+                      }
+                    },
+                    "desktop": {
+                      "style": {
+                        "backgroundColor": "rgba(59,130,246,0.15)",
+                        "padding": "4px 10px",
+                        "borderRadius": "8px"
+                      }
+                    }
+                  }
                 }
-              ]
+              ],
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                }
+              }
             },
             {
               "type": "text",
@@ -161,8 +272,22 @@
                 "value": "₹14,82,340",
                 "variant": "h2Large"
               },
-              "style": {
-                "color": "#f1f5f9"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                }
               }
             },
             {
@@ -171,11 +296,60 @@
                 "value": "As of 09 Apr 2026 · 4:00 PM IST",
                 "variant": "caption"
               },
-              "style": {
-                "color": "#94a3b8"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "color": "#94a3b8"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "color": "#94a3b8"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "color": "#94a3b8"
+                  }
+                }
               }
             }
-          ]
+          ],
+          "responsive": {
+            "mobile": {
+              "style": {
+                "borderRadius": "16px",
+                "border": "1px solid #1e293b",
+                "backgroundColor": "#111827",
+                "padding": "20px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "8px"
+              }
+            },
+            "tablet": {
+              "style": {
+                "borderRadius": "16px",
+                "border": "1px solid #1e293b",
+                "backgroundColor": "#111827",
+                "padding": "20px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "8px"
+              }
+            },
+            "desktop": {
+              "style": {
+                "borderRadius": "16px",
+                "border": "1px solid #1e293b",
+                "backgroundColor": "#111827",
+                "padding": "20px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "8px"
+              }
+            }
+          }
         },
         {
           "type": "text",
@@ -183,8 +357,22 @@
             "value": "HOLDINGS",
             "variant": "sectionHeader"
           },
-          "style": {
-            "color": "#94a3b8"
+          "responsive": {
+            "mobile": {
+              "style": {
+                "color": "#94a3b8"
+              }
+            },
+            "tablet": {
+              "style": {
+                "color": "#94a3b8"
+              }
+            },
+            "desktop": {
+              "style": {
+                "color": "#94a3b8"
+              }
+            }
           }
         },
         {
@@ -407,14 +595,48 @@
             }
           }
         }
-      ]
+      ],
+      "responsive": {
+        "mobile": {
+          "style": {
+            "flex": "1",
+            "overflowY": "auto",
+            "padding": "20px",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "20px"
+          }
+        },
+        "tablet": {
+          "style": {
+            "flex": "1",
+            "overflowY": "auto",
+            "padding": "20px",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "20px",
+            "maxWidth": "720px",
+            "margin": "0 auto",
+            "width": "100%"
+          }
+        },
+        "desktop": {
+          "style": {
+            "flex": "1",
+            "overflowY": "auto",
+            "padding": "20px",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "20px",
+            "maxWidth": "860px",
+            "margin": "0 auto",
+            "width": "100%"
+          }
+        }
+      }
     },
     {
       "type": "container",
-      "style": {
-        "padding": "16px 20px 24px",
-        "backgroundColor": "#0f172a"
-      },
       "children": [
         {
           "type": "button",
@@ -427,19 +649,103 @@
               }
             }
           },
-          "style": {
-            "width": "100%",
-            "padding": "16px",
-            "borderRadius": "16px",
-            "border": "none",
-            "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
-            "color": "#ffffff",
-            "fontSize": "16px",
-            "fontWeight": "600",
-            "cursor": "pointer"
+          "responsive": {
+            "mobile": {
+              "style": {
+                "width": "100%",
+                "padding": "16px",
+                "borderRadius": "16px",
+                "border": "none",
+                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+                "color": "#ffffff",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "cursor": "pointer"
+              }
+            },
+            "tablet": {
+              "style": {
+                "width": "100%",
+                "padding": "16px",
+                "borderRadius": "16px",
+                "border": "none",
+                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+                "color": "#ffffff",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "cursor": "pointer",
+                "maxWidth": "420px",
+                "alignSelf": "center"
+              }
+            },
+            "desktop": {
+              "style": {
+                "width": "100%",
+                "padding": "16px",
+                "borderRadius": "16px",
+                "border": "none",
+                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+                "color": "#ffffff",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "cursor": "pointer",
+                "maxWidth": "420px",
+                "alignSelf": "center"
+              }
+            }
           }
         }
-      ]
+      ],
+      "responsive": {
+        "mobile": {
+          "style": {
+            "padding": "16px 20px 24px",
+            "backgroundColor": "#0f172a"
+          }
+        },
+        "tablet": {
+          "style": {
+            "padding": "16px 20px 24px",
+            "backgroundColor": "#0f172a",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "desktop": {
+          "style": {
+            "padding": "16px 20px 24px",
+            "backgroundColor": "#0f172a",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        }
+      }
     }
-  ]
+  ],
+  "responsive": {
+    "mobile": {
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100vh",
+        "backgroundColor": "#0f172a"
+      }
+    },
+    "tablet": {
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100vh",
+        "backgroundColor": "#0f172a"
+      }
+    },
+    "desktop": {
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100vh",
+        "backgroundColor": "#0f172a"
+      }
+    }
+  }
 }

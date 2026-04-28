@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
 import { validateValue, type ValidationRule } from '../utils/validationEngine';
+import { resolveResponsiveStyle } from '../renderer/responsive';
 
 function formatPhone(raw: string): string {
   const digits = raw.replace(/\D/g, '').slice(0, 10);
@@ -69,8 +70,8 @@ export function Input({ node }: { node: UINode }) {
         onBlur={onBlur}
         style={{
           fontFamily: "'Inter', sans-serif",
-          ...node.style,
-          border: errorMsg ? '1px solid red' : node.style?.border,
+          ...resolveResponsiveStyle(node),
+          border: errorMsg ? '1px solid red' : resolveResponsiveStyle(node).border,
         }}
       />
       {errorMsg && (

@@ -1,30 +1,11 @@
 {
   "type": "container",
-  "style": {
-    "display": "flex",
-    "flexDirection": "column",
-    "height": "100vh",
-    "backgroundColor": "#0f172a"
-  },
   "children": [
     {
       "type": "container",
-      "style": {
-        "flex": "1",
-        "overflowY": "auto",
-        "padding": "20px",
-        "display": "flex",
-        "flexDirection": "column",
-        "gap": "20px"
-      },
       "children": [
         {
           "type": "container",
-          "style": {
-            "display": "flex",
-            "alignItems": "center",
-            "gap": "16px"
-          },
           "children": [
             {
               "type": "button",
@@ -36,17 +17,49 @@
                   "type": "goBack"
                 }
               },
-              "style": {
-                "width": "40px",
-                "height": "40px",
-                "borderRadius": "50%",
-                "backgroundColor": "#111827",
-                "border": "1px solid #1e293b",
-                "display": "flex",
-                "alignItems": "center",
-                "justifyContent": "center",
-                "cursor": "pointer",
-                "padding": "0"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "width": "40px",
+                    "height": "40px",
+                    "borderRadius": "50%",
+                    "backgroundColor": "#111827",
+                    "border": "1px solid #1e293b",
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "cursor": "pointer",
+                    "padding": "0"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "width": "40px",
+                    "height": "40px",
+                    "borderRadius": "50%",
+                    "backgroundColor": "#111827",
+                    "border": "1px solid #1e293b",
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "cursor": "pointer",
+                    "padding": "0"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "width": "40px",
+                    "height": "40px",
+                    "borderRadius": "50%",
+                    "backgroundColor": "#111827",
+                    "border": "1px solid #1e293b",
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "cursor": "pointer",
+                    "padding": "0"
+                  }
+                }
               }
             },
             {
@@ -55,21 +68,51 @@
                 "value": "Eligible for Pledge",
                 "variant": "h3"
               },
-              "style": {
-                "color": "#f1f5f9"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                }
               }
             }
-          ]
+          ],
+          "responsive": {
+            "mobile": {
+              "style": {
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "16px"
+              }
+            },
+            "tablet": {
+              "style": {
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "16px"
+              }
+            },
+            "desktop": {
+              "style": {
+                "display": "flex",
+                "alignItems": "center",
+                "gap": "16px"
+              }
+            }
+          }
         },
         {
           "type": "container",
-          "style": {
-            "borderRadius": "12px",
-            "border": "1px solid #3b82f6",
-            "backgroundColor": "rgba(59,130,246,0.05)",
-            "padding": "12px 16px",
-            "textAlign": "center"
-          },
           "children": [
             {
               "type": "text",
@@ -77,32 +120,63 @@
                 "value": "Showing: your holdings ∩ lender-approved securities list",
                 "variant": "bodySmall"
               },
-              "style": {
-                "color": "#3b82f6",
-                "lineHeight": "1.4"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "color": "#3b82f6",
+                    "lineHeight": "1.4"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "color": "#3b82f6",
+                    "lineHeight": "1.4"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "color": "#3b82f6",
+                    "lineHeight": "1.4"
+                  }
+                }
               }
             }
-          ]
+          ],
+          "responsive": {
+            "mobile": {
+              "style": {
+                "borderRadius": "12px",
+                "border": "1px solid #3b82f6",
+                "backgroundColor": "rgba(59,130,246,0.05)",
+                "padding": "12px 16px",
+                "textAlign": "center"
+              }
+            },
+            "tablet": {
+              "style": {
+                "borderRadius": "12px",
+                "border": "1px solid #3b82f6",
+                "backgroundColor": "rgba(59,130,246,0.05)",
+                "padding": "12px 16px",
+                "textAlign": "center"
+              }
+            },
+            "desktop": {
+              "style": {
+                "borderRadius": "12px",
+                "border": "1px solid #3b82f6",
+                "backgroundColor": "rgba(59,130,246,0.05)",
+                "padding": "12px 16px",
+                "textAlign": "center"
+              }
+            }
+          }
         },
         {
           "type": "container",
-          "style": {
-            "borderRadius": "16px",
-            "border": "1px solid #1e293b",
-            "backgroundColor": "#111827",
-            "padding": "20px",
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "8px"
-          },
           "children": [
             {
               "type": "container",
-              "style": {
-                "display": "flex",
-                "justifyContent": "space-between",
-                "alignItems": "center"
-              },
               "children": [
                 {
                   "type": "text",
@@ -110,17 +184,26 @@
                     "value": "Eligible Portfolio Value",
                     "variant": "caption"
                   },
-                  "style": {
-                    "color": "#94a3b8"
+                  "responsive": {
+                    "mobile": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    },
+                    "tablet": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    },
+                    "desktop": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    }
                   }
                 },
                 {
                   "type": "container",
-                  "style": {
-                    "backgroundColor": "rgba(34,197,94,0.15)",
-                    "padding": "4px 10px",
-                    "borderRadius": "8px"
-                  },
                   "children": [
                     {
                       "type": "text",
@@ -128,13 +211,73 @@
                         "value": "4 / 5 qualify",
                         "variant": "badge"
                       },
-                      "style": {
-                        "color": "#22c55e"
+                      "responsive": {
+                        "mobile": {
+                          "style": {
+                            "color": "#22c55e"
+                          }
+                        },
+                        "tablet": {
+                          "style": {
+                            "color": "#22c55e"
+                          }
+                        },
+                        "desktop": {
+                          "style": {
+                            "color": "#22c55e"
+                          }
+                        }
                       }
                     }
-                  ]
+                  ],
+                  "responsive": {
+                    "mobile": {
+                      "style": {
+                        "backgroundColor": "rgba(34,197,94,0.15)",
+                        "padding": "4px 10px",
+                        "borderRadius": "8px"
+                      }
+                    },
+                    "tablet": {
+                      "style": {
+                        "backgroundColor": "rgba(34,197,94,0.15)",
+                        "padding": "4px 10px",
+                        "borderRadius": "8px"
+                      }
+                    },
+                    "desktop": {
+                      "style": {
+                        "backgroundColor": "rgba(34,197,94,0.15)",
+                        "padding": "4px 10px",
+                        "borderRadius": "8px"
+                      }
+                    }
+                  }
                 }
-              ]
+              ],
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                }
+              }
             },
             {
               "type": "text",
@@ -142,17 +285,26 @@
                 "value": "{{eligibleTotal}}",
                 "variant": "h2Large"
               },
-              "style": {
-                "color": "#f1f5f9"
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "color": "#f1f5f9"
+                  }
+                }
               }
             },
             {
               "type": "container",
-              "style": {
-                "display": "flex",
-                "justifyContent": "space-between",
-                "alignItems": "center"
-              },
               "children": [
                 {
                   "type": "text",
@@ -160,8 +312,22 @@
                     "value": "Max Loan Amount",
                     "variant": "caption"
                   },
-                  "style": {
-                    "color": "#94a3b8"
+                  "responsive": {
+                    "mobile": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    },
+                    "tablet": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    },
+                    "desktop": {
+                      "style": {
+                        "color": "#94a3b8"
+                      }
+                    }
                   }
                 },
                 {
@@ -170,21 +336,88 @@
                     "value": "{{loanTotal}}",
                     "variant": "h3"
                   },
-                  "style": {
-                    "color": "#22c55e"
+                  "responsive": {
+                    "mobile": {
+                      "style": {
+                        "color": "#22c55e"
+                      }
+                    },
+                    "tablet": {
+                      "style": {
+                        "color": "#22c55e"
+                      }
+                    },
+                    "desktop": {
+                      "style": {
+                        "color": "#22c55e"
+                      }
+                    }
                   }
                 }
-              ]
+              ],
+              "responsive": {
+                "mobile": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                },
+                "tablet": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                },
+                "desktop": {
+                  "style": {
+                    "display": "flex",
+                    "justifyContent": "space-between",
+                    "alignItems": "center"
+                  }
+                }
+              }
             }
-          ]
+          ],
+          "responsive": {
+            "mobile": {
+              "style": {
+                "borderRadius": "16px",
+                "border": "1px solid #1e293b",
+                "backgroundColor": "#111827",
+                "padding": "20px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "8px"
+              }
+            },
+            "tablet": {
+              "style": {
+                "borderRadius": "16px",
+                "border": "1px solid #1e293b",
+                "backgroundColor": "#111827",
+                "padding": "20px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "8px"
+              }
+            },
+            "desktop": {
+              "style": {
+                "borderRadius": "16px",
+                "border": "1px solid #1e293b",
+                "backgroundColor": "#111827",
+                "padding": "20px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "8px"
+              }
+            }
+          }
         },
         {
           "type": "selectable-list",
-          "style": {
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "12px"
-          },
           "props": {
             "selectionKey": "pledgeAssets",
             "items": [
@@ -250,16 +483,73 @@
                 "disabledReason": "Not in approved list"
               }
             ]
+          },
+          "responsive": {
+            "mobile": {
+              "style": {
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "12px"
+              }
+            },
+            "tablet": {
+              "style": {
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "12px"
+              }
+            },
+            "desktop": {
+              "style": {
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "12px"
+              }
+            }
           }
         }
-      ]
+      ],
+      "responsive": {
+        "mobile": {
+          "style": {
+            "flex": "1",
+            "overflowY": "auto",
+            "padding": "20px",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "20px"
+          }
+        },
+        "tablet": {
+          "style": {
+            "flex": "1",
+            "overflowY": "auto",
+            "padding": "20px",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "20px",
+            "maxWidth": "720px",
+            "margin": "0 auto",
+            "width": "100%"
+          }
+        },
+        "desktop": {
+          "style": {
+            "flex": "1",
+            "overflowY": "auto",
+            "padding": "20px",
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "20px",
+            "maxWidth": "860px",
+            "margin": "0 auto",
+            "width": "100%"
+          }
+        }
+      }
     },
     {
       "type": "container",
-      "style": {
-        "padding": "16px 20px 24px",
-        "backgroundColor": "#0f172a"
-      },
       "children": [
         {
           "type": "button",
@@ -273,19 +563,103 @@
               }
             }
           },
-          "style": {
-            "width": "100%",
-            "padding": "16px",
-            "borderRadius": "16px",
-            "border": "none",
-            "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
-            "color": "#ffffff",
-            "fontSize": "16px",
-            "fontWeight": "600",
-            "cursor": "pointer"
+          "responsive": {
+            "mobile": {
+              "style": {
+                "width": "100%",
+                "padding": "16px",
+                "borderRadius": "16px",
+                "border": "none",
+                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+                "color": "#ffffff",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "cursor": "pointer"
+              }
+            },
+            "tablet": {
+              "style": {
+                "width": "100%",
+                "padding": "16px",
+                "borderRadius": "16px",
+                "border": "none",
+                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+                "color": "#ffffff",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "cursor": "pointer",
+                "maxWidth": "420px",
+                "alignSelf": "center"
+              }
+            },
+            "desktop": {
+              "style": {
+                "width": "100%",
+                "padding": "16px",
+                "borderRadius": "16px",
+                "border": "none",
+                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
+                "color": "#ffffff",
+                "fontSize": "16px",
+                "fontWeight": "600",
+                "cursor": "pointer",
+                "maxWidth": "420px",
+                "alignSelf": "center"
+              }
+            }
           }
         }
-      ]
+      ],
+      "responsive": {
+        "mobile": {
+          "style": {
+            "padding": "16px 20px 24px",
+            "backgroundColor": "#0f172a"
+          }
+        },
+        "tablet": {
+          "style": {
+            "padding": "16px 20px 24px",
+            "backgroundColor": "#0f172a",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        },
+        "desktop": {
+          "style": {
+            "padding": "16px 20px 24px",
+            "backgroundColor": "#0f172a",
+            "display": "flex",
+            "justifyContent": "center"
+          }
+        }
+      }
     }
-  ]
+  ],
+  "responsive": {
+    "mobile": {
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100vh",
+        "backgroundColor": "#0f172a"
+      }
+    },
+    "tablet": {
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100vh",
+        "backgroundColor": "#0f172a"
+      }
+    },
+    "desktop": {
+      "style": {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100vh",
+        "backgroundColor": "#0f172a"
+      }
+    }
+  }
 }

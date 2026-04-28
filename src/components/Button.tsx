@@ -3,6 +3,7 @@ import { ArrowLeft, ChevronRight, Check, X, type LucideIcon } from 'lucide-react
 import { handleAction } from '../utils/handleAction';
 import { useUIState } from '../state/uiState';
 import type { UINode, Action } from '../renderer/types';
+import { resolveResponsiveStyle } from '../renderer/responsive';
 
 const iconMap: Record<string, LucideIcon> = {
   'arrow-left': ArrowLeft,
@@ -48,6 +49,7 @@ export function Button({ node }: { node: UINode }) {
   }
 
   const Icon = props.icon ? iconMap[props.icon] : null;
+  const resolvedStyle = resolveResponsiveStyle(node);
 
   return (
     <button
@@ -55,7 +57,7 @@ export function Button({ node }: { node: UINode }) {
       disabled={isDisabled}
       style={{
         fontFamily: "'Inter', sans-serif",
-        ...node.style,
+        ...resolvedStyle,
         ...(isDisabled ? { opacity: 0.5, cursor: 'not-allowed' } : {}),
       }}
     >
