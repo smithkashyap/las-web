@@ -3,7 +3,7 @@ import { ArrowLeft, ChevronRight, Check, X, type LucideIcon } from 'lucide-react
 import { handleAction } from '../utils/handleAction';
 import { useUIState } from '../state/uiState';
 import type { UINode, Action } from '../renderer/types';
-import { resolveResponsiveStyle } from '../renderer/responsive';
+import { resolveNodeStyle, getTextColor } from '../renderer/styles';
 
 const iconMap: Record<string, LucideIcon> = {
   'arrow-left': ArrowLeft,
@@ -26,6 +26,8 @@ export function Button({ node }: { node: UINode }) {
     disabledWhenEmpty?: string;
     disableWhenInvalid?: boolean;
     validateFields?: string[];
+    variant?: string;
+    size?: string;
   };
   const validateFields = props.validateFields ?? [];
   const hasInvalidFields = validateFields.some((field) => {
@@ -49,19 +51,29 @@ export function Button({ node }: { node: UINode }) {
   }
 
   const Icon = props.icon ? iconMap[props.icon] : null;
-  const resolvedStyle = resolveResponsiveStyle(node);
+
+  // Get variant and size from props, default to primary/md
+  const variant = props.variant ?? 'primary';
+  const size = props.size ?? 'md';
+
+  // Resolve style: base → variant → size → node.style
+  const resolvedStyle = resolveNodeStyle(node, 'button', {
+    fontFamily: "'Inter', sans-serif",
+  });
+
+  // Icon size from props or default
+  const iconSize = props.iconSize ?? (size === 'sm' ? 14 : size === 'lg' ? 22 : 18);
 
   return (
     <button
       onClick={isDisabled ? undefined : () => props.action && handleAction(props.action, navigate, setValue)}
       disabled={isDisabled}
       style={{
-        fontFamily: "'Inter', sans-serif",
         ...resolvedStyle,
         ...(isDisabled ? { opacity: 0.5, cursor: 'not-allowed' } : {}),
       }}
     >
-      {Icon ? <Icon size={props.iconSize ?? 18} color={props.iconColor ?? '#f1f5f9'} /> : props.label}
+      {Icon ? <Icon size={iconSize} color={props.iconColor ?? '#f1f5f9'} /> : props.label}
     </button>
   );
 }

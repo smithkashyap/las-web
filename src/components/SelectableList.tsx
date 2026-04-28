@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import { SelectableItem, type SelectableItemData } from './SelectableItem';
 import type { UINode } from '../renderer/types';
-import { resolveResponsiveStyle } from '../renderer/responsive';
+import { resolveNodeStyle } from '../renderer/styles';
 
 export interface SelectableListProps {
   items: SelectableItemData[];
@@ -26,7 +26,7 @@ export function SelectableList({
   const items = itemsProp ?? nodeProps.items ?? [];
   const selectedValues = selectedValuesProp ?? nodeProps.selectedValues ?? [];
   const resolvedOnChange = onSelectionChange ?? nodeProps.onSelectionChange;
-  const resolvedStyle = style ?? (node ? resolveResponsiveStyle(node) : undefined);
+  const resolvedStyle = style ?? (node ? resolveNodeStyle(node, 'container', { display: 'flex', flexDirection: 'column', gap: '12px' }) : undefined);
 
   const toggle = (item: SelectableItemData) => {
     if (item.disabled) return;

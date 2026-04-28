@@ -29,7 +29,7 @@ interface PledgeCardProps {
 
 export function PledgeCard({ node }: { node: UINode }) {
   const { isSelected, toggleSelection } = useUIState();
-  const props = (node.props ?? {}) as PledgeCardProps;
+  const props = (node.props ?? {}) as unknown as PledgeCardProps;
 
   const selected = isSelected(props.selectionKey, props.value);
 

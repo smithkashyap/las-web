@@ -22,7 +22,7 @@ const STATUS = {
 export function KycItem({ node }: { node: UINode }) {
   const navigate = useNavigate();
   const { setValue, getBoolean } = useUIState();
-  const props = (node.props ?? {}) as KycItemProps;
+  const props = (node.props ?? {}) as unknown as KycItemProps;
 
   const isDoneViaState = props.stateKey ? getBoolean(props.stateKey) : false;
   const effectiveStatus: 'done' | 'pending' | undefined = isDoneViaState ? 'done' : props.status;

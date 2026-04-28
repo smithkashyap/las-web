@@ -4,7 +4,7 @@ import { DynamicRenderer } from '../renderer/DynamicRenderer';
 import { handleAction } from '../utils/handleAction';
 import { useUIState } from '../state/uiState';
 import type { UINode, Action } from '../renderer/types';
-import { resolveResponsiveStyle } from '../renderer/responsive';
+import { resolveNodeStyle } from '../renderer/styles';
 
 interface DynamicListProps {
   itemType: string;
@@ -16,8 +16,14 @@ interface DynamicListProps {
 export function DynamicList({ node }: { node: UINode }) {
   const navigate = useNavigate();
   const { setValue } = useUIState();
-  const props = (node.props ?? {}) as DynamicListProps;
+  const props = (node.props ?? {}) as unknown as DynamicListProps;
   const items = props.items ?? [];
+
+  const resolvedStyle = resolveNodeStyle(node, 'container', {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  });
 
   const handleItemClick = useCallback(
     (item: Record<string, unknown>) => {
@@ -29,7 +35,7 @@ export function DynamicList({ node }: { node: UINode }) {
   );
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', ...resolveResponsiveStyle(node) }}>
+    <div style={resolvedStyle}>
       {items.map((item, i) => {
         const hasItemAction = !!item.action;
         const hasListAction = !!props.onItemClick;

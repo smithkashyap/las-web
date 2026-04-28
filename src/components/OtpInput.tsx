@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState, type CSSProperties } from 'react';
 import type { UINode } from '../renderer/types';
 import { useUIState } from '../state/uiState';
-import { resolveResponsiveStyle } from '../renderer/responsive';
+import { resolveNodeStyle } from '../renderer/styles';
 
 export function OtpInput({ node }: { node: UINode }) {
   const { setValue, setError } = useUIState();
@@ -51,15 +51,20 @@ export function OtpInput({ node }: { node: UINode }) {
     refs.current[Math.min(p.length, len - 1)]?.focus();
   }, [len, props.stateKey, setError, setValue, validateOtp]);
 
-  const box: CSSProperties = {
+  // Resolve style: base → variant → size → node.style
+  const resolvedStyle = resolveNodeStyle(node, 'input', {
     fontFamily: "'Inter', sans-serif",
+  });
+
+  const box: CSSProperties = {
     textAlign: 'center',
     outline: 'none',
+    ...resolvedStyle,
     ...props.boxStyle,
   };
 
   return (
-    <div style={{ ...props.containerStyle, ...resolveResponsiveStyle(node) }}>
+    <div style={{ ...props.containerStyle, ...node.style }}>
       {digits.map((d, i) => (
         <input key={i} ref={(el) => { refs.current[i] = el; }} type="text" inputMode="numeric" maxLength={1}
           value={d} onChange={(e) => onChange(i, e.target.value)} onKeyDown={(e) => onKey(i, e)}

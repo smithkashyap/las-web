@@ -36,9 +36,18 @@ export type Action =
   | SetStateAction
   | ApiAction;
 
+export type SizeVariant = 'sm' | 'md' | 'lg' | 'full';
+
+export interface CommonNodeProps {
+  variant?: string;
+  size?: SizeVariant;
+  colorVariant?: string;
+  [key: string]: unknown;
+}
+
 export interface BaseNode {
   type: string;
-  props?: Record<string, unknown>;
+  props?: CommonNodeProps;
   style?: CSSProperties;
   responsive?: ResponsiveStyle;
   children?: UINode[];
@@ -46,12 +55,12 @@ export interface BaseNode {
 
 export interface TextNode extends BaseNode {
   type: 'text';
-  props: { value: string; variant?: string };
+  props: CommonNodeProps & { value: string };
 }
 
 export interface ButtonNode extends BaseNode {
   type: 'button';
-  props: {
+  props: CommonNodeProps & {
     label?: string;
     icon?: string;
     iconSize?: number;
@@ -64,7 +73,7 @@ export interface ButtonNode extends BaseNode {
 
 export interface InputNode extends BaseNode {
   type: 'input';
-  props: {
+  props: CommonNodeProps & {
     placeholder?: string;
     inputType?: string;
     maxLength?: number;
@@ -73,7 +82,7 @@ export interface InputNode extends BaseNode {
 
 export interface DateInputNode extends BaseNode {
   type: 'date-input';
-  props: {
+  props: CommonNodeProps & {
     placeholder?: string;
     maxLength?: number;
     icon?: string;
@@ -84,7 +93,7 @@ export interface DateInputNode extends BaseNode {
 
 export interface OtpInputNode extends BaseNode {
   type: 'otp-input';
-  props: {
+  props: CommonNodeProps & {
     length?: number;
     boxStyle?: CSSProperties;
   };
@@ -92,12 +101,12 @@ export interface OtpInputNode extends BaseNode {
 
 export interface CheckboxNode extends BaseNode {
   type: 'checkbox';
-  props: { label: string; stateKey: string };
+  props: CommonNodeProps & { label: string; stateKey: string };
 }
 
 export interface ContainerNode extends BaseNode {
   type: 'container';
-  props?: {
+  props?: CommonNodeProps & {
     selectable?: boolean;
     selectionKey?: string;
     value?: string;
@@ -106,12 +115,12 @@ export interface ContainerNode extends BaseNode {
 
 export interface ImageNode extends BaseNode {
   type: 'image';
-  props: { src: string; alt?: string };
+  props: CommonNodeProps & { src: string; alt?: string };
 }
 
 export interface KycItemNode extends BaseNode {
-  type: 'kycItem';
-  props: {
+  type: 'kyc-item';
+  props: CommonNodeProps & {
     icon: string;
     title: string;
     subtitle: string;
@@ -130,16 +139,16 @@ export interface ProviderItemProps {
 }
 
 export interface ProviderGroupNode extends BaseNode {
-  type: 'providerGroup';
-  props: {
+  type: 'provider-group';
+  props: CommonNodeProps & {
     title: string;
     items: ProviderItemProps[];
   };
 }
 
 export interface DynamicListNode extends BaseNode {
-  type: 'dynamicList';
-  props: {
+  type: 'dynamic-list';
+  props: CommonNodeProps & {
     itemType: string;
     items: Record<string, unknown>[];
     extraProps?: Record<string, unknown>;

@@ -27,7 +27,7 @@ interface ProviderItemProps {
 export function ProviderItem({ node }: { node: UINode }) {
   const navigate = useNavigate();
   const { setValue } = useUIState();
-  const props = (node.props ?? {}) as ProviderItemProps;
+  const props = (node.props ?? {}) as unknown as ProviderItemProps;
 
   const isConnected = props.status === 'connected';
 

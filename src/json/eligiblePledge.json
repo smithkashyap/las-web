@@ -1,65 +1,46 @@
 {
   "type": "container",
+  "props": {
+    "variant": "page"
+  },
   "children": [
     {
       "type": "container",
+      "props": {
+        "variant": "flex"
+      },
+      "style": {
+        "gap": "20px",
+        "padding": "20px",
+        "flex": "1",
+        "overflowY": "auto"
+      },
       "children": [
         {
           "type": "container",
+          "props": {
+            "variant": "row"
+          },
+          "style": {
+            "gap": "16px"
+          },
           "children": [
             {
               "type": "button",
               "props": {
                 "icon": "arrow-left",
                 "iconSize": 20,
-                "iconColor": "#f1f5f9",
+                "iconColor": "#FBFBFB",
                 "action": {
                   "type": "goBack"
-                }
+                },
+                "variant": "icon",
+                "size": "md"
               },
-              "responsive": {
-                "mobile": {
-                  "style": {
-                    "width": "40px",
-                    "height": "40px",
-                    "borderRadius": "50%",
-                    "backgroundColor": "#111827",
-                    "border": "1px solid #1e293b",
-                    "display": "flex",
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                    "cursor": "pointer",
-                    "padding": "0"
-                  }
-                },
-                "tablet": {
-                  "style": {
-                    "width": "40px",
-                    "height": "40px",
-                    "borderRadius": "50%",
-                    "backgroundColor": "#111827",
-                    "border": "1px solid #1e293b",
-                    "display": "flex",
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                    "cursor": "pointer",
-                    "padding": "0"
-                  }
-                },
-                "desktop": {
-                  "style": {
-                    "width": "40px",
-                    "height": "40px",
-                    "borderRadius": "50%",
-                    "backgroundColor": "#111827",
-                    "border": "1px solid #1e293b",
-                    "display": "flex",
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                    "cursor": "pointer",
-                    "padding": "0"
-                  }
-                }
+              "style": {
+                "width": "40px",
+                "height": "40px",
+                "padding": "0"
               }
             },
             {
@@ -67,354 +48,107 @@
               "props": {
                 "value": "Eligible for Pledge",
                 "variant": "h3"
-              },
-              "responsive": {
-                "mobile": {
-                  "style": {
-                    "color": "#f1f5f9"
-                  }
-                },
-                "tablet": {
-                  "style": {
-                    "color": "#f1f5f9"
-                  }
-                },
-                "desktop": {
-                  "style": {
-                    "color": "#f1f5f9"
-                  }
-                }
               }
             }
-          ],
-          "responsive": {
-            "mobile": {
-              "style": {
-                "display": "flex",
-                "alignItems": "center",
-                "gap": "16px"
-              }
-            },
-            "tablet": {
-              "style": {
-                "display": "flex",
-                "alignItems": "center",
-                "gap": "16px"
-              }
-            },
-            "desktop": {
-              "style": {
-                "display": "flex",
-                "alignItems": "center",
-                "gap": "16px"
-              }
-            }
-          }
+          ]
         },
         {
           "type": "container",
+          "props": {
+            "variant": "info"
+          },
           "children": [
             {
               "type": "text",
               "props": {
                 "value": "Showing: your holdings ∩ lender-approved securities list",
-                "variant": "bodySmall"
+                "variant": "bodySmall",
+                "colorVariant": "info"
               },
-              "responsive": {
-                "mobile": {
-                  "style": {
-                    "color": "#3b82f6",
-                    "lineHeight": "1.4"
-                  }
-                },
-                "tablet": {
-                  "style": {
-                    "color": "#3b82f6",
-                    "lineHeight": "1.4"
-                  }
-                },
-                "desktop": {
-                  "style": {
-                    "color": "#3b82f6",
-                    "lineHeight": "1.4"
-                  }
-                }
+              "style": {
+                "lineHeight": "1.4"
               }
             }
-          ],
-          "responsive": {
-            "mobile": {
-              "style": {
-                "borderRadius": "12px",
-                "border": "1px solid #3b82f6",
-                "backgroundColor": "rgba(59,130,246,0.05)",
-                "padding": "12px 16px",
-                "textAlign": "center"
-              }
-            },
-            "tablet": {
-              "style": {
-                "borderRadius": "12px",
-                "border": "1px solid #3b82f6",
-                "backgroundColor": "rgba(59,130,246,0.05)",
-                "padding": "12px 16px",
-                "textAlign": "center"
-              }
-            },
-            "desktop": {
-              "style": {
-                "borderRadius": "12px",
-                "border": "1px solid #3b82f6",
-                "backgroundColor": "rgba(59,130,246,0.05)",
-                "padding": "12px 16px",
-                "textAlign": "center"
-              }
-            }
-          }
+          ]
         },
         {
           "type": "container",
+          "props": {
+            "variant": "card",
+            "size": "lg"
+          },
+          "style": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "8px"
+          },
           "children": [
             {
               "type": "container",
+              "props": {
+                "variant": "between"
+              },
               "children": [
                 {
                   "type": "text",
                   "props": {
                     "value": "Eligible Portfolio Value",
-                    "variant": "caption"
-                  },
-                  "responsive": {
-                    "mobile": {
-                      "style": {
-                        "color": "#94a3b8"
-                      }
-                    },
-                    "tablet": {
-                      "style": {
-                        "color": "#94a3b8"
-                      }
-                    },
-                    "desktop": {
-                      "style": {
-                        "color": "#94a3b8"
-                      }
-                    }
+                    "variant": "bodySmall",
+                    "colorVariant": "secondary"
                   }
                 },
                 {
                   "type": "container",
+                  "style": {
+                    "backgroundColor": "rgba(40,167,69,0.15)",
+                    "padding": "4px 10px",
+                    "borderRadius": "8px"
+                  },
                   "children": [
                     {
                       "type": "text",
                       "props": {
                         "value": "4 / 5 qualify",
-                        "variant": "badge"
-                      },
-                      "responsive": {
-                        "mobile": {
-                          "style": {
-                            "color": "#22c55e"
-                          }
-                        },
-                        "tablet": {
-                          "style": {
-                            "color": "#22c55e"
-                          }
-                        },
-                        "desktop": {
-                          "style": {
-                            "color": "#22c55e"
-                          }
-                        }
+                        "variant": "badge",
+                        "colorVariant": "success"
                       }
                     }
-                  ],
-                  "responsive": {
-                    "mobile": {
-                      "style": {
-                        "backgroundColor": "rgba(34,197,94,0.15)",
-                        "padding": "4px 10px",
-                        "borderRadius": "8px"
-                      }
-                    },
-                    "tablet": {
-                      "style": {
-                        "backgroundColor": "rgba(34,197,94,0.15)",
-                        "padding": "4px 10px",
-                        "borderRadius": "8px"
-                      }
-                    },
-                    "desktop": {
-                      "style": {
-                        "backgroundColor": "rgba(34,197,94,0.15)",
-                        "padding": "4px 10px",
-                        "borderRadius": "8px"
-                      }
-                    }
-                  }
+                  ]
                 }
-              ],
-              "responsive": {
-                "mobile": {
-                  "style": {
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
-                  }
-                },
-                "tablet": {
-                  "style": {
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
-                  }
-                },
-                "desktop": {
-                  "style": {
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
-                  }
-                }
-              }
+              ]
             },
             {
               "type": "text",
               "props": {
                 "value": "{{eligibleTotal}}",
-                "variant": "h2Large"
-              },
-              "responsive": {
-                "mobile": {
-                  "style": {
-                    "color": "#f1f5f9"
-                  }
-                },
-                "tablet": {
-                  "style": {
-                    "color": "#f1f5f9"
-                  }
-                },
-                "desktop": {
-                  "style": {
-                    "color": "#f1f5f9"
-                  }
-                }
+                "variant": "h2"
               }
             },
             {
               "type": "container",
+              "props": {
+                "variant": "between"
+              },
               "children": [
                 {
                   "type": "text",
                   "props": {
                     "value": "Max Loan Amount",
-                    "variant": "caption"
-                  },
-                  "responsive": {
-                    "mobile": {
-                      "style": {
-                        "color": "#94a3b8"
-                      }
-                    },
-                    "tablet": {
-                      "style": {
-                        "color": "#94a3b8"
-                      }
-                    },
-                    "desktop": {
-                      "style": {
-                        "color": "#94a3b8"
-                      }
-                    }
+                    "variant": "bodySmall",
+                    "colorVariant": "secondary"
                   }
                 },
                 {
                   "type": "text",
                   "props": {
                     "value": "{{loanTotal}}",
-                    "variant": "h3"
-                  },
-                  "responsive": {
-                    "mobile": {
-                      "style": {
-                        "color": "#22c55e"
-                      }
-                    },
-                    "tablet": {
-                      "style": {
-                        "color": "#22c55e"
-                      }
-                    },
-                    "desktop": {
-                      "style": {
-                        "color": "#22c55e"
-                      }
-                    }
+                    "variant": "h3",
+                    "colorVariant": "success"
                   }
                 }
-              ],
-              "responsive": {
-                "mobile": {
-                  "style": {
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
-                  }
-                },
-                "tablet": {
-                  "style": {
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
-                  }
-                },
-                "desktop": {
-                  "style": {
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
-                  }
-                }
-              }
+              ]
             }
-          ],
-          "responsive": {
-            "mobile": {
-              "style": {
-                "borderRadius": "16px",
-                "border": "1px solid #1e293b",
-                "backgroundColor": "#111827",
-                "padding": "20px",
-                "display": "flex",
-                "flexDirection": "column",
-                "gap": "8px"
-              }
-            },
-            "tablet": {
-              "style": {
-                "borderRadius": "16px",
-                "border": "1px solid #1e293b",
-                "backgroundColor": "#111827",
-                "padding": "20px",
-                "display": "flex",
-                "flexDirection": "column",
-                "gap": "8px"
-              }
-            },
-            "desktop": {
-              "style": {
-                "borderRadius": "16px",
-                "border": "1px solid #1e293b",
-                "backgroundColor": "#111827",
-                "padding": "20px",
-                "display": "flex",
-                "flexDirection": "column",
-                "gap": "8px"
-              }
-            }
-          }
+          ]
         },
         {
           "type": "selectable-list",
@@ -484,72 +218,20 @@
               }
             ]
           },
-          "responsive": {
-            "mobile": {
-              "style": {
-                "display": "flex",
-                "flexDirection": "column",
-                "gap": "12px"
-              }
-            },
-            "tablet": {
-              "style": {
-                "display": "flex",
-                "flexDirection": "column",
-                "gap": "12px"
-              }
-            },
-            "desktop": {
-              "style": {
-                "display": "flex",
-                "flexDirection": "column",
-                "gap": "12px"
-              }
-            }
+          "style": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "12px"
           }
         }
-      ],
-      "responsive": {
-        "mobile": {
-          "style": {
-            "flex": "1",
-            "overflowY": "auto",
-            "padding": "20px",
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "20px"
-          }
-        },
-        "tablet": {
-          "style": {
-            "flex": "1",
-            "overflowY": "auto",
-            "padding": "20px",
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "20px",
-            "maxWidth": "720px",
-            "margin": "0 auto",
-            "width": "100%"
-          }
-        },
-        "desktop": {
-          "style": {
-            "flex": "1",
-            "overflowY": "auto",
-            "padding": "20px",
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "20px",
-            "maxWidth": "860px",
-            "margin": "0 auto",
-            "width": "100%"
-          }
-        }
-      }
+      ]
     },
     {
       "type": "container",
+      "style": {
+        "padding": "16px 20px 24px",
+        "backgroundColor": "#121212"
+      },
       "children": [
         {
           "type": "button",
@@ -561,105 +243,12 @@
               "payload": {
                 "route": "/kyc-verification"
               }
-            }
-          },
-          "responsive": {
-            "mobile": {
-              "style": {
-                "width": "100%",
-                "padding": "16px",
-                "borderRadius": "16px",
-                "border": "none",
-                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
-                "color": "#ffffff",
-                "fontSize": "16px",
-                "fontWeight": "600",
-                "cursor": "pointer"
-              }
             },
-            "tablet": {
-              "style": {
-                "width": "100%",
-                "padding": "16px",
-                "borderRadius": "16px",
-                "border": "none",
-                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
-                "color": "#ffffff",
-                "fontSize": "16px",
-                "fontWeight": "600",
-                "cursor": "pointer",
-                "maxWidth": "420px",
-                "alignSelf": "center"
-              }
-            },
-            "desktop": {
-              "style": {
-                "width": "100%",
-                "padding": "16px",
-                "borderRadius": "16px",
-                "border": "none",
-                "background": "linear-gradient(135deg, #3b82f6, #60a5fa)",
-                "color": "#ffffff",
-                "fontSize": "16px",
-                "fontWeight": "600",
-                "cursor": "pointer",
-                "maxWidth": "420px",
-                "alignSelf": "center"
-              }
-            }
+            "variant": "primary",
+            "size": "lg"
           }
         }
-      ],
-      "responsive": {
-        "mobile": {
-          "style": {
-            "padding": "16px 20px 24px",
-            "backgroundColor": "#0f172a"
-          }
-        },
-        "tablet": {
-          "style": {
-            "padding": "16px 20px 24px",
-            "backgroundColor": "#0f172a",
-            "display": "flex",
-            "justifyContent": "center"
-          }
-        },
-        "desktop": {
-          "style": {
-            "padding": "16px 20px 24px",
-            "backgroundColor": "#0f172a",
-            "display": "flex",
-            "justifyContent": "center"
-          }
-        }
-      }
+      ]
     }
-  ],
-  "responsive": {
-    "mobile": {
-      "style": {
-        "display": "flex",
-        "flexDirection": "column",
-        "height": "100vh",
-        "backgroundColor": "#0f172a"
-      }
-    },
-    "tablet": {
-      "style": {
-        "display": "flex",
-        "flexDirection": "column",
-        "height": "100vh",
-        "backgroundColor": "#0f172a"
-      }
-    },
-    "desktop": {
-      "style": {
-        "display": "flex",
-        "flexDirection": "column",
-        "height": "100vh",
-        "backgroundColor": "#0f172a"
-      }
-    }
-  }
+  ]
 }

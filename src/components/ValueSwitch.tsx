@@ -10,7 +10,7 @@ interface ValueSwitchProps {
 
 export function ValueSwitch({ node }: { node: UINode }) {
   const { getString } = useUIState();
-  const props = (node.props ?? {}) as ValueSwitchProps;
+  const props = (node.props ?? {}) as unknown as ValueSwitchProps;
 
   const value = getString(props.stateKey);
   const child = props.cases[value] ?? props.defaultCase;

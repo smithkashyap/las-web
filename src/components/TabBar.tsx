@@ -1,6 +1,7 @@
 import { useEffect, type CSSProperties } from 'react';
 import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
+import { getSizeStyle } from '../renderer/responsive';
 
 interface Tab {
   key: string;
@@ -21,7 +22,8 @@ interface TabBarProps {
 
 export function TabBar({ node }: { node: UINode }) {
   const { getString, setValue } = useUIState();
-  const props = (node.props ?? {}) as TabBarProps;
+  const props = (node.props ?? {}) as unknown as TabBarProps;
+  const sizeStyle = getSizeStyle(node, 'button');
 
   // Initialize default value once — no mutation during render
   useEffect(() => {
@@ -58,6 +60,7 @@ export function TabBar({ node }: { node: UINode }) {
               cursor: isSingle ? 'default' : 'pointer',
               opacity: isSingle ? 0.7 : 1,
               fontFamily: "'Inter', sans-serif",
+              ...sizeStyle,
               ...(isActive ? props.activeStyle : props.inactiveStyle),
             }}
           >

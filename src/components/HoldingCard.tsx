@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import { typographyMap } from '../renderer/typography';
 import type { UINode } from '../renderer/types';
+import { getSizeStyle } from '../renderer/responsive';
 
 interface HoldingCardProps {
   code: string;
@@ -15,7 +16,8 @@ interface HoldingCardProps {
 }
 
 export function HoldingCard({ node }: { node: UINode }) {
-  const props = (node.props ?? {}) as HoldingCardProps;
+  const props = (node.props ?? {}) as unknown as HoldingCardProps;
+  const sizeStyle = getSizeStyle(node, 'container');
 
   return (
     <div
@@ -27,6 +29,7 @@ export function HoldingCard({ node }: { node: UINode }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        ...sizeStyle,
         ...props.containerStyle,
       }}
     >

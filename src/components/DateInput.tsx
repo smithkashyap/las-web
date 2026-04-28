@@ -3,7 +3,7 @@ import { Calendar } from 'lucide-react';
 import { useUIState } from '../state/uiState';
 import type { UINode } from '../renderer/types';
 import { validateValue, type ValidationRule } from '../utils/validationEngine';
-import { resolveResponsiveStyle } from '../renderer/responsive';
+import { resolveNodeStyle } from '../renderer/styles';
 
 function formatDate(raw: string): string {
   const d = raw.replace(/\D/g, '').slice(0, 8);
@@ -60,8 +60,14 @@ export function DateInput({ node }: { node: UINode }) {
     setTouched(true);
   }, []);
 
+  // Resolve style: base → variant → size → node.style
+  const resolvedStyle = resolveNodeStyle(node, 'input', {
+    fontFamily: "'Inter', sans-serif",
+    paddingRight: '48px',
+  });
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', ...resolveResponsiveStyle(node) }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
         <input
           type="text"
@@ -69,8 +75,7 @@ export function DateInput({ node }: { node: UINode }) {
           placeholder={props.placeholder ?? 'DD/MM/YYYY'}
           maxLength={props.maxLength ?? 10}
           style={{
-            fontFamily: "'Inter', sans-serif",
-            paddingRight: '48px',
+            ...resolvedStyle,
             ...props.inputStyle,
             border: errorMsg ? '1px solid red' : props.inputStyle?.border,
           }}
