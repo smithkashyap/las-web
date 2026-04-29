@@ -155,6 +155,38 @@ export interface DynamicListNode extends BaseNode {
   };
 }
 
+export interface PaginatedListDataSource {
+  /** "json" = fetch a local JSON file; "api" (or omitted) = call backend API */
+  type?: 'json' | 'api';
+  /** For type "json": path to the JSON file (relative to public/). For type "api": API endpoint path. */
+  api: string;
+  method?: 'GET' | 'POST';
+  /** Template-resolved query params. For JSON mode, the resolved "key" param selects a top-level key from the file. */
+  query?: Record<string, unknown>;
+  /** Dot-notation paths to extract from the response (API mode only). */
+  responseMap?: {
+    items?: string;
+    page?: string;
+    totalPages?: string;
+    totalItems?: string;
+  };
+  /** For JSON mode: which resolved query param holds the key to select from the JSON object. Defaults to "type". */
+  queryKey?: string;
+}
+
+export interface PaginatedListNode extends BaseNode {
+  type: 'paginated-list';
+  props: CommonNodeProps & {
+    itemType: string;
+    items?: Record<string, unknown>[];
+    extraProps?: Record<string, unknown>;
+    itemsPerPage?: number;
+    emptyTitle?: string;
+    emptySubtitle?: string;
+    dataSource?: PaginatedListDataSource;
+  };
+}
+
 export type UINode =
   | TextNode
   | ButtonNode
@@ -167,4 +199,5 @@ export type UINode =
   | KycItemNode
   | ProviderGroupNode
   | DynamicListNode
+  | PaginatedListNode
   | BaseNode;

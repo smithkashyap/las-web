@@ -1,233 +1,255 @@
 {
   "type": "container",
   "props": {
-    "variant": "flex"
-  },
-  "style": {
-    "gap": "24px",
-    "padding": "20px",
-    "alignItems": "center",
-    "backgroundColor": "#121212"
+    "variant": "page"
   },
   "children": [
     {
-      "type": "button",
+      "type": "container",
       "props": {
-        "icon": "arrow-left",
-        "iconSize": 20,
-        "iconColor": "#f1f5f9",
-        "action": {
-          "type": "goBack"
-        },
-        "variant": "icon",
-        "size": "md"
+        "variant": "flex"
       },
       "style": {
-        "width": "40px",
-        "height": "40px",
-        "padding": "0",
-        "alignSelf": "flex-start"
-      }
-    },
-    {
-      "type": "container",
-      "style": {
-        "width": "100%",
-        "height": "4px",
-        "borderRadius": "4px",
-        "backgroundColor": "#1e293b"
+        "gap": "24px",
+        "padding": "20px",
+        "alignItems": "center",
+        "flex": 1,
+        "overflowY": "auto"
       },
       "children": [
+        {
+          "type": "button",
+          "props": {
+            "icon": "arrow-left",
+            "iconSize": 20,
+            "iconColor": "#f1f5f9",
+            "action": {
+              "type": "goBack"
+            },
+            "variant": "icon",
+            "size": "md"
+          },
+          "style": {
+            "width": "40px",
+            "height": "40px",
+            "padding": "0",
+            "alignSelf": "flex-start"
+          }
+        },
         {
           "type": "container",
           "style": {
+            "width": "100%",
             "height": "4px",
-            "width": "50%",
             "borderRadius": "4px",
-            "backgroundColor": "#3b82f6"
-          }
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "props": {
-        "value": "📱",
-        "variant": "icon"
-      },
-      "style": {
-        "marginTop": "16px"
-      }
-    },
-    {
-      "type": "text",
-      "props": {
-        "value": "Enter OTP",
-        "variant": "h2"
-      }
-    },
-    {
-      "type": "text",
-      "props": {
-        "value": "Sent to +91 98765 43210",
-        "variant": "body",
-        "colorVariant": "secondary"
-      }
-    },
-    {
-      "type": "otp-input",
-      "props": {
-        "length": 6,
-        "stateKey": "otp",
-        "boxStyle": {
-          "width": "48px",
-          "height": "56px",
-          "textAlign": "center",
-          "fontSize": "20px",
-          "fontWeight": "600",
-          "borderRadius": "12px",
-          "border": "1px solid #1e293b",
-          "backgroundColor": "#0f172a",
-          "color": "#f1f5f9",
-          "outline": "none",
-          "margin-right": "4px",
-          "margin-left": "4px"
-        }
-      }
-    },
-    {
-      "type": "text",
-      "props": {
-        "value": "Resend in 00:28",
-        "variant": "body",
-        "colorVariant": "secondary"
-      }
-    },
-    {
-      "type": "button",
-      "props": {
-        "label": "Verify & Continue",
-        "disableWhenInvalid": true,
-        "validateFields": [
-          "otp"
-        ],
-        "actionId": "VERIFY_OTP",
-        "action": {
-          "type": "navigate",
-          "payload": {
-            "route": "/pledge"
-          }
+            "backgroundColor": "#1e293b"
+          },
+          "children": [
+            {
+              "type": "container",
+              "style": {
+                "height": "4px",
+                "width": "50%",
+                "borderRadius": "4px",
+                "backgroundColor": "#3b82f6"
+              }
+            }
+          ]
         },
-        "variant": "primary",
-        "size": "lg"
-      },
-      "style": {
-        "maxWidth": "380px"
-      }
-    },
-    {
-      "type": "container",
-      "props": {
-        "variant": "card",
-        "size": "lg"
-      },
-      "style": {
-        "display": "flex",
-        "flexDirection": "column",
-        "gap": "12px",
-        "maxWidth": "380px"
-      },
-      "children": [
         {
           "type": "text",
           "props": {
-            "value": "Verification pipeline",
-            "variant": "caption",
+            "value": "📱",
+            "variant": "icon"
+          },
+          "style": {
+            "marginTop": "16px"
+          }
+        },
+        {
+          "type": "text",
+          "props": {
+            "value": "Enter OTP",
+            "variant": "h2"
+          }
+        },
+        {
+          "type": "text",
+          "props": {
+            "value": "Sent to +91 98765 43210",
+            "variant": "body",
+            "colorVariant": "secondary"
+          }
+        },
+        {
+          "type": "otp-input",
+          "props": {
+            "length": 6,
+            "stateKey": "otp",
+            "boxStyle": {
+              "width": "48px",
+              "height": "56px",
+              "textAlign": "center",
+              "fontSize": "20px",
+              "fontWeight": "600",
+              "borderRadius": "12px",
+              "border": "1px solid #1e293b",
+              "backgroundColor": "#0f172a",
+              "color": "#f1f5f9",
+              "outline": "none",
+              "margin-right": "4px",
+              "margin-left": "4px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "props": {
+            "value": "Resend in 00:28",
+            "variant": "body",
             "colorVariant": "secondary"
           }
         },
         {
           "type": "container",
           "props": {
-            "variant": "row"
+            "variant": "card",
+            "size": "lg"
           },
           "style": {
-            "gap": "12px"
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "12px",
+            "maxWidth": "380px"
           },
           "children": [
+            {
+              "type": "text",
+              "props": {
+                "value": "Verification pipeline",
+                "variant": "caption",
+                "colorVariant": "secondary"
+              }
+            },
             {
               "type": "container",
               "props": {
                 "variant": "row"
               },
               "style": {
-                "justifyContent": "center"
+                "gap": "12px"
               },
               "children": [
                 {
+                  "type": "container",
+                  "props": {
+                    "variant": "row"
+                  },
+                  "style": {
+                    "justifyContent": "center"
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "props": {
+                        "value": "✓",
+                        "variant": "caption",
+                        "colorVariant": "success"
+                      }
+                    }
+                  ]
+                },
+                {
                   "type": "text",
                   "props": {
-                    "value": "✓",
-                    "variant": "caption",
-                    "colorVariant": "success"
+                    "value": "PAN verified via NSDL",
+                    "variant": "bodyMedium"
                   }
                 }
               ]
             },
             {
-              "type": "text",
-              "props": {
-                "value": "PAN verified via NSDL",
-                "variant": "bodyMedium"
+              "type": "container",
+              "style": {
+                "width": "1px",
+                "height": "16px",
+                "backgroundColor": "#1e293b",
+                "marginLeft": "12px"
               }
+            },
+            {
+              "type": "container",
+              "props": {
+                "variant": "row"
+              },
+              "style": {
+                "gap": "12px"
+              },
+              "children": [
+                {
+                  "type": "container",
+                  "props": {
+                    "variant": "row"
+                  },
+                  "style": {
+                    "justifyContent": "center"
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "props": {
+                        "value": "–",
+                        "variant": "caption",
+                        "colorVariant": "info"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "Mobile OTP pending",
+                    "variant": "bodyMedium"
+                  }
+                }
+              ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "type": "container",
+      "style": {
+        "position": "sticky",
+        "bottom": "0",
+        "backgroundColor": "#121212",
+        "padding": "16px 20px",
+        "display": "flex",
+        "justifyContent": "center"
+      },
+      "children": [
         {
-          "type": "container",
-          "style": {
-            "width": "1px",
-            "height": "16px",
-            "backgroundColor": "#1e293b",
-            "marginLeft": "12px"
-          }
-        },
-        {
-          "type": "container",
+          "type": "button",
           "props": {
-            "variant": "row"
+            "label": "Verify & Continue",
+            "disableWhenInvalid": true,
+            "validateFields": [
+              "otp"
+            ],
+            "actionId": "VERIFY_OTP",
+            "action": {
+              "type": "navigate",
+              "payload": {
+                "route": "/pledge"
+              }
+            },
+            "variant": "primary",
+            "size": "lg"
           },
           "style": {
-            "gap": "12px"
-          },
-          "children": [
-            {
-              "type": "container",
-              "props": {
-                "variant": "row"
-              },
-              "style": {
-                "justifyContent": "center"
-              },
-              "children": [
-                {
-                  "type": "text",
-                  "props": {
-                    "value": "–",
-                    "variant": "caption",
-                    "colorVariant": "info"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "props": {
-                "value": "Mobile OTP pending",
-                "variant": "bodyMedium"
-              }
-            }
-          ]
+            "maxWidth": "380px"
+          }
         }
       ]
     }

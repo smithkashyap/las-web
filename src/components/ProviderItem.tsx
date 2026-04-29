@@ -34,11 +34,21 @@ export function ProviderItem({ node }: { node: UINode }) {
   const containerStyle: CSSProperties = {
     ...props.containerStyle,
     ...(isConnected ? props.activeContainerStyle : {}),
-    cursor: props.onClick ? 'pointer' : undefined,
+    cursor: props.onClick && !props.action ? 'pointer' : undefined,
   };
 
   return (
-    <div onClick={props.onClick} style={containerStyle}>
+    <div
+      onClick={(e) => {
+        if ((e.target as HTMLElement).closest('button, a')) return;
+
+        if (props.action) return;
+
+        props.onClick?.();
+        console.log('ProviderItem clicked:', props.name);
+      }}
+      style={containerStyle}
+    >
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         <div style={{ ...props.logoStyle, backgroundColor: props.color }}>
           <span style={props.codeTextStyle}>{props.code}</span>
@@ -55,8 +65,23 @@ export function ProviderItem({ node }: { node: UINode }) {
         <span style={props.successIconStyle}>✓</span>
       ) : (
         <button
-          onClick={(e) => { e.stopPropagation(); props.action && handleAction(props.action, navigate, setValue); }}
-          style={props.actionStyle}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            console.log('CTA CLICKED', props.action);
+
+            if (props.action) {
+              handleAction(props.action, navigate, setValue);
+            }
+          }}
+          style={{
+            ...props.actionStyle,
+            position: 'relative',
+            zIndex: 2,
+            pointerEvents: 'auto',
+          }}
         >
           {props.actionLabel ?? 'Link'}
         </button>

@@ -1,103 +1,65 @@
 {
   "type": "container",
   "props": {
-    "variant": "flex"
-  },
-  "style": {
-    "gap": "24px",
-    "padding": "20px",
-    "backgroundColor": "#121212"
+    "variant": "page"
   },
   "children": [
-    {
-      "type": "button",
-      "props": {
-        "icon": "arrow-left",
-        "iconSize": 20,
-        "iconColor": "#FBFBFB",
-        "action": {
-          "type": "goBack"
-        },
-        "variant": "icon",
-        "size": "md"
-      },
-      "style": {
-        "width": "40px",
-        "height": "40px",
-        "padding": "0"
-      }
-    },
-    {
-      "type": "container",
-      "style": {
-        "height": "4px",
-        "width": "25%",
-        "borderRadius": "4px",
-        "backgroundColor": "#00A9EB"
-      }
-    },
-    {
-      "type": "text",
-      "props": {
-        "value": "Tell us about you",
-        "variant": "h2"
-      }
-    },
-    {
-      "type": "text",
-      "props": {
-        "value": "We collect this to verify your identity and match your investment portfolio.",
-        "variant": "body",
-        "colorVariant": "secondary"
-      },
-      "style": {
-        "lineHeight": "1.5"
-      }
-    },
     {
       "type": "container",
       "props": {
         "variant": "flex"
       },
       "style": {
-        "gap": "20px"
+        "gap": "24px",
+        "padding": "20px",
+        "flex": 1,
+        "overflowY": "auto"
       },
       "children": [
         {
-          "type": "container",
+          "type": "button",
           "props": {
-            "variant": "flex"
+            "icon": "arrow-left",
+            "iconSize": 20,
+            "iconColor": "#FBFBFB",
+            "action": {
+              "type": "goBack"
+            },
+            "variant": "icon",
+            "size": "md"
           },
           "style": {
-            "gap": "8px"
+            "width": "40px",
+            "height": "40px",
+            "padding": "0"
+          }
+        },
+        {
+          "type": "container",
+          "style": {
+            "height": "4px",
+            "width": "25%",
+            "borderRadius": "4px",
+            "backgroundColor": "#00A9EB"
+          }
+        },
+        {
+          "type": "text",
+          "props": {
+            "value": "Tell us about you",
+            "variant": "h2"
+          }
+        },
+        {
+          "type": "text",
+          "props": {
+            "value": "We collect this to verify your identity and match your investment portfolio.",
+            "variant": "body",
+            "colorVariant": "secondary"
           },
-          "children": [
-            {
-              "type": "text",
-              "props": {
-                "value": "Full Name (as per PAN)",
-                "variant": "label",
-                "colorVariant": "secondary"
-              }
-            },
-            {
-              "type": "input",
-              "props": {
-                "placeholder": "Rahul Sharma",
-                "stateKey": "fullName",
-                "validation": {
-                  "rules": [
-                    {
-                      "type": "required",
-                      "message": "Full name is required"
-                    }
-                  ]
-                },
-                "variant": "primary",
-                "size": "full"
-              }
-            }
-          ]
+          "style": {
+            "lineHeight": "1.5"
+          }
         },
         {
           "type": "container",
@@ -105,165 +67,77 @@
             "variant": "flex"
           },
           "style": {
-            "gap": "8px"
+            "gap": "20px"
           },
           "children": [
-            {
-              "type": "text",
-              "props": {
-                "value": "PAN Number",
-                "variant": "label",
-                "colorVariant": "secondary"
-              }
-            },
-            {
-              "type": "input",
-              "props": {
-                "placeholder": "ABCPS1234K",
-                "maxLength": 10,
-                "stateKey": "pan",
-                "validation": {
-                  "rules": [
-                    {
-                      "type": "required",
-                      "message": "PAN is mandatory"
-                    },
-                    {
-                      "type": "pan",
-                      "message": "Invalid PAN format"
-                    }
-                  ]
-                },
-                "variant": "primary",
-                "size": "full"
-              },
-              "style": {
-                "textTransform": "uppercase"
-              }
-            },
-            {
-              "type": "text",
-              "props": {
-                "value": "Used for portfolio matching & KYC",
-                "variant": "caption",
-                "colorVariant": "secondary"
-              },
-              "style": {
-                "opacity": "0.7"
-              }
-            }
-          ]
-        },
-        {
-          "type": "container",
-          "props": {
-            "variant": "flex"
-          },
-          "style": {
-            "gap": "8px"
-          },
-          "children": [
-            {
-              "type": "text",
-              "props": {
-                "value": "Date of Birth",
-                "variant": "label",
-                "colorVariant": "secondary"
-              }
-            },
-            {
-              "type": "date-input",
-              "props": {
-                "placeholder": "DD / MM / YYYY",
-                "stateKey": "dob",
-                "validation": {
-                  "rules": [
-                    {
-                      "type": "required",
-                      "message": "Date of birth is required"
-                    },
-                    {
-                      "type": "dob",
-                      "message": "Invalid date of birth"
-                    }
-                  ]
-                },
-                "inputStyle": {
-                  "width": "100%",
-                  "padding": "14px 16px",
-                  "borderRadius": "12px",
-                  "border": "1px solid #3A4048",
-                  "backgroundColor": "#121212",
-                  "color": "#FBFBFB",
-                  "fontSize": "14px",
-                  "outline": "none",
-                  "boxSizing": "border-box"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "container",
-          "props": {
-            "variant": "flex"
-          },
-          "style": {
-            "gap": "8px"
-          },
-          "children": [
-            {
-              "type": "text",
-              "props": {
-                "value": "Mobile Number",
-                "variant": "label",
-                "colorVariant": "secondary"
-              }
-            },
             {
               "type": "container",
+              "props": {
+                "variant": "flex"
+              },
               "style": {
-                "display": "flex",
-                "gap": "12px"
+                "gap": "8px"
               },
               "children": [
                 {
-                  "type": "container",
+                  "type": "text",
                   "props": {
-                    "variant": "card",
-                    "size": "lg"
-                  },
-                  "style": {
-                    "display": "flex"
-                  },
-                  "children": [
-                    {
-                      "type": "text",
-                      "props": {
-                        "value": "+91",
-                        "variant": "label",
-                        "colorVariant": "secondary"
-                      }
-                    }
-                  ]
+                    "value": "Full Name (as per PAN)",
+                    "variant": "label",
+                    "colorVariant": "secondary"
+                  }
                 },
                 {
                   "type": "input",
                   "props": {
-                    "placeholder": "98765 43210",
-                    "inputType": "tel",
-                    "format": "phone",
-                    "stateKey": "mobile",
+                    "placeholder": "Rahul Sharma",
+                    "stateKey": "fullName",
                     "validation": {
                       "rules": [
                         {
                           "type": "required",
-                          "message": "Mobile number is required"
+                          "message": "Full name is required"
+                        }
+                      ]
+                    },
+                    "variant": "primary",
+                    "size": "full"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "props": {
+                "variant": "flex"
+              },
+              "style": {
+                "gap": "8px"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "PAN Number",
+                    "variant": "label",
+                    "colorVariant": "secondary"
+                  }
+                },
+                {
+                  "type": "input",
+                  "props": {
+                    "placeholder": "ABCPS1234K",
+                    "maxLength": 10,
+                    "stateKey": "pan",
+                    "validation": {
+                      "rules": [
+                        {
+                          "type": "required",
+                          "message": "PAN is mandatory"
                         },
                         {
-                          "type": "regex",
-                          "pattern": "^[0-9]{5}\\s?[0-9]{5}$",
-                          "message": "Enter valid 10-digit mobile number"
+                          "type": "pan",
+                          "message": "Invalid PAN format"
                         }
                       ]
                     },
@@ -271,7 +145,183 @@
                     "size": "full"
                   },
                   "style": {
-                    "flex": "1"
+                    "textTransform": "uppercase"
+                  }
+                },
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "Used for portfolio matching & KYC",
+                    "variant": "caption",
+                    "colorVariant": "secondary"
+                  },
+                  "style": {
+                    "opacity": "0.7"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "props": {
+                "variant": "flex"
+              },
+              "style": {
+                "gap": "8px"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "Date of Birth",
+                    "variant": "label",
+                    "colorVariant": "secondary"
+                  }
+                },
+                {
+                  "type": "date-input",
+                  "props": {
+                    "placeholder": "DD / MM / YYYY",
+                    "stateKey": "dob",
+                    "validation": {
+                      "rules": [
+                        {
+                          "type": "required",
+                          "message": "Date of birth is required"
+                        },
+                        {
+                          "type": "dob",
+                          "message": "Invalid date of birth"
+                        }
+                      ]
+                    },
+                    "inputStyle": {
+                      "width": "100%",
+                      "padding": "14px 16px",
+                      "borderRadius": "12px",
+                      "border": "1px solid #3A4048",
+                      "backgroundColor": "#121212",
+                      "color": "#FBFBFB",
+                      "fontSize": "14px",
+                      "outline": "none",
+                      "boxSizing": "border-box"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "props": {
+                "variant": "flex"
+              },
+              "style": {
+                "gap": "8px"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "Mobile Number",
+                    "variant": "label",
+                    "colorVariant": "secondary"
+                  }
+                },
+                {
+                  "type": "container",
+                  "style": {
+                    "display": "flex",
+                    "gap": "12px"
+                  },
+                  "children": [
+                    {
+                      "type": "container",
+                      "props": {
+                        "variant": "card",
+                        "size": "lg"
+                      },
+                      "style": {
+                        "display": "flex"
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "props": {
+                            "value": "+91",
+                            "variant": "label",
+                            "colorVariant": "secondary"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "input",
+                      "props": {
+                        "placeholder": "98765 43210",
+                        "inputType": "tel",
+                        "format": "phone",
+                        "stateKey": "mobile",
+                        "validation": {
+                          "rules": [
+                            {
+                              "type": "required",
+                              "message": "Mobile number is required"
+                            },
+                            {
+                              "type": "regex",
+                              "pattern": "^[0-9]{5}\\s?[0-9]{5}$",
+                              "message": "Enter valid 10-digit mobile number"
+                            }
+                          ]
+                        },
+                        "variant": "primary",
+                        "size": "full"
+                      },
+                      "style": {
+                        "flex": "1"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "props": {
+                "variant": "flex"
+              },
+              "style": {
+                "gap": "8px"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "props": {
+                    "value": "Email Address",
+                    "variant": "label",
+                    "colorVariant": "secondary"
+                  }
+                },
+                {
+                  "type": "input",
+                  "props": {
+                    "placeholder": "rahul.sharma@gmail.com",
+                    "inputType": "email",
+                    "stateKey": "email",
+                    "validation": {
+                      "rules": [
+                        {
+                          "type": "required",
+                          "message": "Email is required"
+                        },
+                        {
+                          "type": "email",
+                          "message": "Invalid email address"
+                        }
+                      ]
+                    },
+                    "variant": "primary",
+                    "size": "full"
                   }
                 }
               ]
@@ -279,91 +329,61 @@
           ]
         },
         {
-          "type": "container",
+          "type": "checkbox",
           "props": {
-            "variant": "flex"
-          },
-          "style": {
-            "gap": "8px"
-          },
-          "children": [
-            {
-              "type": "text",
-              "props": {
-                "value": "Email Address",
-                "variant": "label",
-                "colorVariant": "secondary"
-              }
-            },
-            {
-              "type": "input",
-              "props": {
-                "placeholder": "rahul.sharma@gmail.com",
-                "inputType": "email",
-                "stateKey": "email",
-                "validation": {
-                  "rules": [
-                    {
-                      "type": "required",
-                      "message": "Email is required"
-                    },
-                    {
-                      "type": "email",
-                      "message": "Invalid email address"
-                    }
-                  ]
-                },
-                "variant": "primary",
-                "size": "full"
-              }
-            }
-          ]
+            "label": "I agree to T&C and authorise LoansOn to fetch my portfolio data via AA framework.",
+            "stateKey": "tncAccepted",
+            "variant": "primary",
+            "size": "sm"
+          }
         }
       ]
     },
     {
-      "type": "checkbox",
-      "props": {
-        "label": "I agree to T&C and authorise LoansOn to fetch my portfolio data via AA framework.",
-        "stateKey": "tncAccepted",
-        "variant": "primary",
-        "size": "sm"
-      }
-    },
-    {
-      "type": "button",
-      "props": {
-        "label": "Send OTP to Verify",
-        "disabledWhenFalse": "tncAccepted",
-        "disableWhenInvalid": true,
-        "validateFields": [
-          "fullName",
-          "pan",
-          "dob",
-          "mobile",
-          "email"
-        ],
-        "action": {
-          "type": "api",
-          "payload": {
-            "api": "submitKyc",
-            "onSuccess": {
-              "type": "navigate",
+      "type": "container",
+      "style": {
+        "position": "sticky",
+        "bottom": "0",
+        "backgroundColor": "#121212",
+        "padding": "16px 20px"
+      },
+      "children": [
+        {
+          "type": "button",
+          "props": {
+            "label": "Send OTP to Verify",
+            "disabledWhenFalse": "tncAccepted",
+            "disableWhenInvalid": true,
+            "validateFields": [
+              "fullName",
+              "pan",
+              "dob",
+              "mobile",
+              "email"
+            ],
+            "action": {
+              "type": "api",
               "payload": {
-                "route": "/pledge"
+                "api": "submitKyc",
+                "onSuccess": {
+                  "type": "navigate",
+                  "payload": {
+                    "route": "/pledge"
+                  }
+                },
+                "onError": {
+                  "type": "navigate",
+                  "payload": {
+                    "route": "/pledge"
+                  }
+                }
               }
             },
-            "onError": {
-              "type": "navigate",
-              "payload": {
-                "route": "/pledge"
-              }
-            }
+            "variant": "primary",
+            "size": "lg"
           }
-        },
-        "variant": "primary",
-        "size": "lg"
-      }
+        }
+      ]
     }
   ]
 }

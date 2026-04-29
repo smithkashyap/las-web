@@ -78,7 +78,7 @@ export function SelectableItem({
         {/* Text */}
         <div>
           <p style={{ ...typographyMap.bodySemibold, color: disabled ? '#94a3b8' : '#f1f5f9', margin: 0 }}>{name}</p>
-          <p style={{ ...typographyMap.caption, color: disabled ? '#ef4444' : '#94a3b8', margin: '2px 0 0 0' }}>
+          <p style={{ ...typographyMap.bodySmall, color: disabled ? '#ef4444' : '#f1f5f9', margin: '2px 0 0 0' }}>
             {disabled ? disabledReason : subtitle}
           </p>
         </div>

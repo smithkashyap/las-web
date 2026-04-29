@@ -1,46 +1,137 @@
 {
   "type": "container",
   "props": {
-    "variant": "flex"
-  },
-  "style": {
-    "gap": "20px",
-    "padding": "20px",
-    "backgroundColor": "#121212"
+    "variant": "page"
   },
   "children": [
     {
       "type": "container",
       "props": {
-        "variant": "row"
+        "variant": "flex"
       },
       "style": {
-        "gap": "16px"
+        "gap": "20px",
+        "padding": "20px",
+        "flex": 1,
+        "overflowY": "auto"
       },
       "children": [
         {
-          "type": "button",
+          "type": "container",
           "props": {
-            "icon": "arrow-left",
-            "iconSize": 20,
-            "iconColor": "#FBFBFB",
-            "action": {
-              "type": "goBack"
-            },
-            "variant": "icon",
-            "size": "md"
+            "variant": "row"
           },
           "style": {
-            "width": "40px",
-            "height": "40px",
-            "padding": "0"
-          }
+            "gap": "16px"
+          },
+          "children": [
+            {
+              "type": "button",
+              "props": {
+                "icon": "arrow-left",
+                "iconSize": 20,
+                "iconColor": "#FBFBFB",
+                "action": {
+                  "type": "goBack"
+                },
+                "variant": "icon",
+                "size": "md"
+              },
+              "style": {
+                "width": "40px",
+                "height": "40px",
+                "padding": "0"
+              }
+            },
+            {
+              "type": "text",
+              "props": {
+                "value": "KYC Verification",
+                "variant": "h4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "style": {
+            "width": "100%",
+            "height": "6px",
+            "borderRadius": "4px",
+            "backgroundColor": "#3A4048"
+          },
+          "children": [
+            {
+              "type": "container",
+              "style": {
+                "height": "6px",
+                "width": "40%",
+                "borderRadius": "4px",
+                "backgroundColor": "#00A9EB"
+              }
+            }
+          ]
         },
         {
           "type": "text",
           "props": {
-            "value": "KYC Verification",
-            "variant": "h4"
+            "value": "Complete all checks. Typically 5–10 mins.",
+            "variant": "body",
+            "colorVariant": "secondary"
+          },
+          "style": {
+            "lineHeight": "1.5"
+          }
+        },
+        {
+          "type": "dynamic-list",
+          "props": {
+            "itemType": "kyc-item",
+            "items": [
+              {
+                "icon": "🪪",
+                "title": "PAN Verification",
+                "subtitle": "NSDL · Auto-fetched",
+                "status": "done"
+              },
+              {
+                "icon": "🏛️",
+                "title": "Aadhaar e-KYC",
+                "subtitle": "DigiLocker OTP consent",
+                "status": "done"
+              },
+              {
+                "icon": "🤳",
+                "title": "Selfie / Liveness",
+                "subtitle": "Face match with Aadhaar",
+                "stateKey": "selfieDone",
+                "action": {
+                  "type": "api",
+                  "payload": {
+                    "api": "selfieCheck",
+                    "onSuccess": {
+                      "type": "setState",
+                      "payload": {
+                        "key": "selfieDone",
+                        "value": true
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "icon": "🏧",
+                "title": "Bank Account",
+                "subtitle": "For disbursement",
+                "status": "pending"
+              },
+              {
+                "icon": "✍️",
+                "title": "e-Sign (eNACH)",
+                "subtitle": "Loan agreement via Aadhaar",
+                "status": "pending"
+              }
+            ]
           }
         }
       ]
@@ -48,101 +139,30 @@
     {
       "type": "container",
       "style": {
-        "width": "100%",
-        "height": "6px",
-        "borderRadius": "4px",
-        "backgroundColor": "#3A4048"
+        "position": "sticky",
+        "bottom": "0",
+        "backgroundColor": "#121212",
+        "padding": "16px 20px"
       },
       "children": [
         {
-          "type": "container",
+          "type": "button",
+          "props": {
+            "label": "Next: Selfie Check",
+            "action": {
+              "type": "navigate",
+              "payload": {
+                "route": ""
+              }
+            },
+            "variant": "primary",
+            "size": "lg"
+          },
           "style": {
-            "height": "6px",
-            "width": "40%",
-            "borderRadius": "4px",
-            "backgroundColor": "#00A9EB"
+            "fontSize": "14px"
           }
         }
       ]
-    },
-    {
-      "type": "text",
-      "props": {
-        "value": "Complete all checks. Typically 5–10 mins.",
-        "variant": "body",
-        "colorVariant": "secondary"
-      },
-      "style": {
-        "lineHeight": "1.5"
-      }
-    },
-    {
-      "type": "dynamic-list",
-      "props": {
-        "itemType": "kyc-item",
-        "items": [
-          {
-            "icon": "🪪",
-            "title": "PAN Verification",
-            "subtitle": "NSDL · Auto-fetched",
-            "status": "done"
-          },
-          {
-            "icon": "🏛️",
-            "title": "Aadhaar e-KYC",
-            "subtitle": "DigiLocker OTP consent",
-            "status": "done"
-          },
-          {
-            "icon": "🤳",
-            "title": "Selfie / Liveness",
-            "subtitle": "Face match with Aadhaar",
-            "stateKey": "selfieDone",
-            "action": {
-              "type": "api",
-              "payload": {
-                "api": "selfieCheck",
-                "onSuccess": {
-                  "type": "setState",
-                  "payload": {
-                    "key": "selfieDone",
-                    "value": true
-                  }
-                }
-              }
-            }
-          },
-          {
-            "icon": "🏧",
-            "title": "Bank Account",
-            "subtitle": "For disbursement",
-            "status": "pending"
-          },
-          {
-            "icon": "✍️",
-            "title": "e-Sign (eNACH)",
-            "subtitle": "Loan agreement via Aadhaar",
-            "status": "pending"
-          }
-        ]
-      }
-    },
-    {
-      "type": "button",
-      "props": {
-        "label": "Next: Selfie Check",
-        "action": {
-          "type": "navigate",
-          "payload": {
-            "route": ""
-          }
-        },
-        "variant": "primary",
-        "size": "lg"
-      },
-      "style": {
-        "fontSize": "14px"
-      }
     }
   ]
 }

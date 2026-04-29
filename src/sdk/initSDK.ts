@@ -11,19 +11,31 @@ const storage: Storage = {
 };
 
 const httpClient: HttpClient = {
-  async get<T>(path: string): Promise<T> {
+  async get<T>(path: string, config?: { headers?: Record<string, string>; query?: Record<string, string | number | boolean | undefined> }): Promise<T> {
     const token = localStorage.getItem(TOKEN_KEY);
-    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    const headers: Record<string, string> = { 'Content-Type': 'application/json', ...config?.headers };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    const res = await fetch(`${API_BASE_URL}${path}`, { headers });
+    let url = `${API_BASE_URL}${path}`;
+    if (config?.query) {
+      const params = new URLSearchParams();
+      for (const [key, value] of Object.entries(config.query)) {
+        if (value !== undefined && value !== null && value !== '') {
+          params.set(key, String(value));
+        }
+      }
+      const qs = params.toString();
+      if (qs) url += `?${qs}`;
+    }
+
+    const res = await fetch(url, { headers });
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
     return res.json() as Promise<T>;
   },
 
-  async post<T, B>(path: string, body: B): Promise<T> {
+  async post<T, B>(path: string, body: B, config?: { headers?: Record<string, string> }): Promise<T> {
     const token = localStorage.getItem(TOKEN_KEY);
-    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    const headers: Record<string, string> = { 'Content-Type': 'application/json', ...config?.headers };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
     const res = await fetch(`${API_BASE_URL}${path}`, {

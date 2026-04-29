@@ -238,8 +238,10 @@
     {
       "type": "container",
       "style": {
-        "padding": "20px",
-        "backgroundColor": "#121212"
+        "position": "sticky",
+        "bottom": "0",
+        "backgroundColor": "#121212",
+        "padding": "16px 20px"
       },
       "children": [
         {

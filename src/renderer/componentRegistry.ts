@@ -19,6 +19,7 @@ import { ExpandableList } from '../components/ExpandableList';
 import { HoldingCard } from '../components/HoldingCard';
 import type { UINode } from './types';
 import { SelectableList } from '../components/SelectableList';
+import { PaginatedList } from '../components/PaginatedList';
 
 export const componentRegistry: Record<string, ComponentType<{ node: UINode }>> = {
   container: Container,
@@ -38,6 +39,7 @@ export const componentRegistry: Record<string, ComponentType<{ node: UINode }>> 
   'tab-bar': TabBar,
   'value-switch': ValueSwitch,
   'expandable-list': ExpandableList,
+  'paginated-list': PaginatedList,
   'holding-card': HoldingCard,
   'selectable-list': SelectableList
 };

@@ -44,7 +44,7 @@
               "type": "text",
               "props": {
                 "value": "Powered by Account Aggregator (AA) framework · RBI regulated",
-                "variant": "bodySmall",
+                "variant": "badge",
                 "colorVariant": "info"
               },
               "style": {
@@ -52,126 +52,6 @@
               }
             }
           ]
-        },
-        {
-          "type": "provider-group",
-          "props": {
-            "title": "BROKERS & DEMAT",
-            "items": [
-              {
-                "name": "Zerodha Kite",
-                "code": "ZRD",
-                "color": "#28A745",
-                "status": "connected",
-                "connectedText": "● Connected",
-                "containerStyle": {
-                  "borderRadius": "16px",
-                  "border": "1px solid #3A4048",
-                  "backgroundColor": "#161616",
-                  "padding": "16px",
-                  "display": "flex",
-                  "alignItems": "center",
-                  "justifyContent": "space-between"
-                },
-                "activeContainerStyle": {
-                  "border": "1px solid #00A9EB",
-                  "backgroundColor": "#00A9EB08"
-                },
-                "logoStyle": {
-                  "width": "40px",
-                  "height": "40px",
-                  "borderRadius": "10px",
-                  "display": "flex",
-                  "alignItems": "center",
-                  "justifyContent": "center"
-                },
-                "codeTextStyle": {
-                  "color": "#FBFBFB",
-                  "fontSize": "11px",
-                  "fontWeight": "600",
-                  "margin": "0"
-                },
-                "titleStyle": {
-                  "color": "#FBFBFB",
-                  "fontSize": "14px",
-                  "fontWeight": "600",
-                  "margin": "0"
-                },
-                "subtitleStyle": {
-                  "color": "#28A745",
-                  "fontSize": "12px",
-                  "margin": "2px 0 0 0"
-                },
-                "successIconStyle": {
-                  "color": "#28A745",
-                  "fontSize": "18px"
-                }
-              },
-              {
-                "name": "Groww",
-                "code": "GRW",
-                "color": "#6366f1",
-                "status": "not_connected",
-                "notConnectedText": "Tap to connect",
-                "actionLabel": "Link",
-                "action": {
-                  "type": "api",
-                  "payload": {
-                    "api": "connectGroww"
-                  }
-                },
-                "containerStyle": {
-                  "borderRadius": "16px",
-                  "border": "1px solid #3A4048",
-                  "backgroundColor": "#161616",
-                  "padding": "16px",
-                  "display": "flex",
-                  "alignItems": "center",
-                  "justifyContent": "space-between"
-                },
-                "activeContainerStyle": {
-                  "border": "1px solid #00A9EB",
-                  "backgroundColor": "#00A9EB08"
-                },
-                "logoStyle": {
-                  "width": "40px",
-                  "height": "40px",
-                  "borderRadius": "10px",
-                  "display": "flex",
-                  "alignItems": "center",
-                  "justifyContent": "center"
-                },
-                "codeTextStyle": {
-                  "color": "#FBFBFB",
-                  "fontSize": "11px",
-                  "fontWeight": "600",
-                  "margin": "0"
-                },
-                "titleStyle": {
-                  "color": "#FBFBFB",
-                  "fontSize": "14px",
-                  "fontWeight": "600",
-                  "margin": "0"
-                },
-                "subtitleStyle": {
-                  "color": "#878787",
-                  "fontSize": "12px",
-                  "margin": "2px 0 0 0"
-                },
-                "actionStyle": {
-                  "color": "#00A9EB",
-                  "backgroundColor": "#00A9EB26",
-                  "padding": "4px 12px",
-                  "borderRadius": "8px",
-                  "border": "none",
-                  "cursor": "pointer",
-                  "fontSize": "13px",
-                  "fontWeight": "600",
-                  "fontFamily": "'Inter', sans-serif"
-                }
-              }
-            ]
-          }
         },
         {
           "type": "provider-group",
@@ -298,8 +178,10 @@
     {
       "type": "container",
       "style": {
-        "padding": "20px",
-        "backgroundColor": "#121212"
+        "position": "sticky",
+        "bottom": "0",
+        "backgroundColor": "#121212",
+        "padding": "20px"
       },
       "children": [
         {
