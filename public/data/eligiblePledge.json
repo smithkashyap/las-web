@@ -1,0 +1,9 @@
+{
+  "eligibleAssets": [
+    { "value": "RIL", "code": "RIL", "codeBg": "#312e81", "codeColor": "#818cf8", "name": "Reliance Industries", "subtitle": "LTV 50% · Loan ₹57,375", "displayValue": "₹1,14,750", "disabled": false, "eligibleAmount": 114750, "loanAmount": 57375 },
+    { "value": "INF", "code": "INF", "codeBg": "#7f1d1d", "codeColor": "#fca5a5", "name": "Infosys Ltd", "subtitle": "LTV 50% · Loan ₹78,400", "displayValue": "₹1,56,800", "disabled": false, "eligibleAmount": 156800, "loanAmount": 78400 },
+    { "value": "TCS", "code": "TCS", "codeBg": "#1e3a5f", "codeColor": "#7dd3fc", "name": "Tata Consultancy", "subtitle": "LTV 50% · Loan ₹54,000", "displayValue": "₹1,08,000", "disabled": false, "eligibleAmount": 108000, "loanAmount": 54000 },
+    { "value": "HDB", "code": "HDB", "codeBg": "#164e63", "codeColor": "#67e8f9", "name": "HDFC Bank", "subtitle": "LTV 50% · Loan ₹41,250", "displayValue": "₹82,500", "disabled": false, "eligibleAmount": 82500, "loanAmount": 41250 },
+    { "value": "SML", "code": "SML", "codeBg": "#581c87", "codeColor": "#c084fc", "name": "Small Cap Co.", "subtitle": "", "displayValue": "₹22,000", "eligibleAmount": 0, "loanAmount": 0, "disabled": true, "disabledReason": "Not in approved list" }
+  ]
+}

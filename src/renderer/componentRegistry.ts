@@ -20,6 +20,7 @@ import { HoldingCard } from '../components/HoldingCard';
 import type { UINode } from './types';
 import { SelectableList } from '../components/SelectableList';
 import { PaginatedList } from '../components/PaginatedList';
+import { InfiniteSelectableList } from '../components/InfiniteSelectableList';
 
 export const componentRegistry: Record<string, ComponentType<{ node: UINode }>> = {
   container: Container,
@@ -41,5 +42,6 @@ export const componentRegistry: Record<string, ComponentType<{ node: UINode }>> 
   'expandable-list': ExpandableList,
   'paginated-list': PaginatedList,
   'holding-card': HoldingCard,
-  'selectable-list': SelectableList
+  'selectable-list': SelectableList,
+  'infinite-selectable-list': InfiniteSelectableList
 };

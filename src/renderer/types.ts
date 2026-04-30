@@ -172,6 +172,8 @@ export interface PaginatedListDataSource {
   };
   /** For JSON mode: which resolved query param holds the key to select from the JSON object. Defaults to "type". */
   queryKey?: string;
+  /** For JSON mode: artificial delay in ms to simulate network latency. Defaults to 0. */
+  mockDelayMs?: number;
 }
 
 export interface PaginatedListNode extends BaseNode {
