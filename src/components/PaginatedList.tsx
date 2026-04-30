@@ -5,6 +5,7 @@ import { resolveNodeStyle, theme } from '../renderer/styles';
 import { useUIState } from '../state/uiState';
 import { apiClient } from '../sdk/initSDK';
 import { Spinner } from './Spinner';
+import InlineSpinner from './InlineSpinner';
 
 interface PaginatedListProps {
   itemType: string;
@@ -68,6 +69,7 @@ function renderEmptyState(title: string, subtitle: string) {
     </div>
   );
 }
+
 
 // ── Component ──
 
@@ -219,7 +221,7 @@ export function PaginatedList({ node }: { node: UINode }) {
     <div style={resolvedStyle}>
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflowY: 'auto', gap: '12px' }}>
         {isLoading ? (
-           <Spinner />
+            <InlineSpinner />
         ) : errorMessage ? (
           renderEmptyState('Unable to load data', errorMessage)
         ) : isEmpty ? (
