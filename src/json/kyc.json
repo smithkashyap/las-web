@@ -90,7 +90,7 @@
                 {
                   "type": "input",
                   "props": {
-                    "placeholder": "Rahul Sharma",
+                    "placeholder": "John Doe",
                     "stateKey": "fullName",
                     "validation": {
                       "rules": [
@@ -351,7 +351,7 @@
         {
           "type": "button",
           "props": {
-            "label": "Send OTP to Verify",
+            "label": "Proceed",
             "disabledWhenFalse": "tncAccepted",
             "disableWhenInvalid": true,
             "validateFields": [

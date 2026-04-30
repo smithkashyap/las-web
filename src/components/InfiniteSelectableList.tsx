@@ -27,6 +27,18 @@ function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function getCache(cacheKey: string): CacheEntry | null {
+  try {
+    const cached = sessionStorage.getItem(cacheKey);
+    if (!cached) return null;
+    const parsed = JSON.parse(cached) as CacheEntry;
+    if (!Array.isArray(parsed.items)) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
 function getPathValue(source: unknown, path: string | undefined): unknown {
   if (!path) return undefined;
   return path.split('.').reduce<unknown>((acc, part) => {
@@ -64,7 +76,7 @@ function resolveQueryValue(value: unknown, state: ReturnType<typeof useUIState>[
 
 export function InfiniteSelectableList({ node }: { node: UINode }) {
   const props = (node.props ?? {}) as unknown as InfiniteSelectableListProps;
-  const { state, isSelected, toggleSelection, setValue, setSelections } = useUIState();
+  const { state, isSelected, toggleSelection, setValue } = useUIState();
 
   const selectionKey = props.selectionKey;
   const itemsPerPage = Math.max(1, props.itemsPerPage ?? 10);
@@ -74,19 +86,21 @@ export function InfiniteSelectableList({ node }: { node: UINode }) {
     ? (resolveQueryValue(props.dataSource.query, state) as Record<string, unknown>)
     : {};
   const queryKey = JSON.stringify(resolvedQuery);
-  const cacheKey = `infinite-list:${selectionKey}:${queryKey}`;
+  const cacheKey = `infinite-list:${selectionKey}:${props.dataSource?.api ?? ''}:${props.dataSource?.type ?? ''}:${queryKey}`;
+  const initialCache = hasDataSource ? getCache(cacheKey) : null;
 
-  const [loadedItems, setLoadedItems] = useState<SelectableItemData[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loadedItems, setLoadedItems] = useState<SelectableItemData[]>(() => initialCache?.items ?? []);
+  const [currentPage, setCurrentPage] = useState(() => initialCache?.page ?? 1);
+  const [totalPages, setTotalPages] = useState(() => initialCache?.totalPages ?? 1);
+  const [hasHydratedFromCache, setHasHydratedFromCache] = useState(Boolean(initialCache));
+  const [isLoading, setIsLoading] = useState(() => Boolean(hasDataSource && !initialCache));
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const prevCacheKeyRef = useRef(cacheKey);
   const prevQueryKeyRef = useRef(queryKey);
-  const hasInitializedSelection = useRef(false);
-  const cacheRestoredRef = useRef(false);
+  const hasSourceChanged = prevCacheKeyRef.current !== cacheKey || prevQueryKeyRef.current !== queryKey;
 
   // Store itemMap in UIState whenever loaded items change
   useEffect(() => {
@@ -99,27 +113,22 @@ export function InfiniteSelectableList({ node }: { node: UINode }) {
       };
     }
     setValue(`${selectionKey}ItemMap`, JSON.stringify(map));
+  }, [loadedItems, selectionKey, setValue]);
 
-    // Auto-select all non-disabled items on first load
-    if (!hasInitializedSelection.current) {
-      hasInitializedSelection.current = true;
-      const defaultSelected = loadedItems.filter((i) => !i.disabled).map((i) => i.value);
-      setSelections(selectionKey, defaultSelected);
-    }
-  }, [loadedItems, selectionKey, setValue, setSelections]);
-
-  // Reset when query changes + clear cache
+  // Reset when query or cache scope changes
   useEffect(() => {
-    if (prevQueryKeyRef.current !== queryKey) {
-      prevQueryKeyRef.current = queryKey;
-      setLoadedItems([]);
-      setCurrentPage(1);
-      setTotalPages(1);
-      cacheRestoredRef.current = false;
-      hasInitializedSelection.current = false;
-      try { sessionStorage.removeItem(cacheKey); } catch { /* noop */ }
-    }
-  }, [queryKey, cacheKey]);
+    if (!hasSourceChanged) return;
+
+    prevCacheKeyRef.current = cacheKey;
+    prevQueryKeyRef.current = queryKey;
+    setHasHydratedFromCache(false);
+    setLoadedItems([]);
+    setCurrentPage(1);
+    setTotalPages(1);
+    setIsLoading(Boolean(props.dataSource));
+    setIsLoadingMore(false);
+    setErrorMessage('');
+  }, [cacheKey, hasSourceChanged, props.dataSource, queryKey]);
 
   // Static items mode
   useEffect(() => {
@@ -134,23 +143,8 @@ export function InfiniteSelectableList({ node }: { node: UINode }) {
   // DataSource fetch (with cache + mock delay)
   useEffect(() => {
     if (!props.dataSource) return;
-
-    // Try restoring from cache on mount
-    if (!cacheRestoredRef.current) {
-      cacheRestoredRef.current = true;
-      try {
-        const cached = sessionStorage.getItem(cacheKey);
-        if (cached) {
-          const parsed = JSON.parse(cached) as CacheEntry;
-          if (parsed.items?.length > 0) {
-            setLoadedItems(parsed.items);
-            setCurrentPage(parsed.page);
-            setTotalPages(parsed.totalPages);
-            return; // skip fetch
-          }
-        }
-      } catch { /* ignore parse errors */ }
-    }
+    if (hasSourceChanged) return;
+    if (hasHydratedFromCache) return;
 
     let cancelled = false;
     const ds = props.dataSource;
@@ -248,7 +242,7 @@ export function InfiniteSelectableList({ node }: { node: UINode }) {
 
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, hasDataSource, itemsPerPage, props.dataSource?.api, props.dataSource?.type, props.dataSource?.method, queryKey]);
+  }, [cacheKey, currentPage, hasDataSource, hasHydratedFromCache, hasSourceChanged, itemsPerPage, props.dataSource?.api, props.dataSource?.type, props.dataSource?.method, queryKey]);
 
   // Infinite scroll handler
   const handleScroll = useCallback(() => {
@@ -258,9 +252,12 @@ export function InfiniteSelectableList({ node }: { node: UINode }) {
 
     const { scrollTop, scrollHeight, clientHeight } = el;
     if (scrollTop + clientHeight >= scrollHeight - 50) {
+      if (hasHydratedFromCache) {
+        setHasHydratedFromCache(false);
+      }
       setCurrentPage((p) => p + 1);
     }
-  }, [isLoading, isLoadingMore, currentPage, totalPages]);
+  }, [currentPage, hasHydratedFromCache, isLoading, isLoadingMore, totalPages]);
 
   const isEmpty = !isLoading && loadedItems.length === 0;
 

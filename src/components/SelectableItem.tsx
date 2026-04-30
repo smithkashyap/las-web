@@ -23,6 +23,7 @@ export function SelectableItem({
   code, codeBg, codeColor, name, subtitle, displayValue,
   disabled, disabledReason, checked, onClick,
 }: SelectableItemProps) {
+  console.log('Rendering SelectableItem:', { code, name, checked, disabled });
   return (
     <div
       onClick={disabled ? undefined : onClick}
